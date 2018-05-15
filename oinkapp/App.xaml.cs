@@ -15,12 +15,13 @@ namespace oinkapp
 		protected override void OnInitialized()
 		{
 			InitializeComponent();
-			NavigationService.NavigateAsync("http://www.erecap_forms/NavigationPage/Acceso");
+			NavigationService.NavigateAsync("Splash");
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
 			containerRegistry.RegisterForNavigation<NavigationPage>();
+			containerRegistry.RegisterForNavigation<SplashView, SplashViewModel>("Splash");
 			containerRegistry.RegisterForNavigation<AccesoView, AccesoViewModel>("Acceso");
 		}
 	}

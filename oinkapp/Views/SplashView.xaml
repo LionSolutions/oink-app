@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="oinkapp.Views.SplashView">
+    <Grid>
+        <StackLayout VerticalOptions="Center" 
+                     HorizontalOptions="Center">
+            <Label Text="¡Bienvenido a Oink!" 
+                   FontSize="Large" 
+                   FontAttributes="Bold"/>
+            <Image Source="pig_icon.png" 
+                   BackgroundColor="Purple" 
+                   Aspect="AspectFit" 
+                   VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"/>
+            <Button Text="Comenzar" BorderColor="Purple"
+                    BorderRadius="1"
+                    Command="{Binding IrAAccesoCommand}"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
