@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="oinkapp.Views.AccesoView">
+             x:Class="oinkapp.Views.AccesoView"
+             Title="{Binding Title}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-    <Image Grid.Row="0" Source="pig_icon.png" 
+    <Image Grid.Row="0" Source="pig_app.jpg" 
            Aspect="AspectFit"
                 Margin="40"/>
     <StackLayout Grid.Row="1" VerticalOptions="Start">
         <Entry Placeholder="Correo"/>
         <Entry Placeholder="Clave"/>
         <Button Text="Acceder"/>
-        <Label Text="Crear una cuenta">
+        <Label Text="Registrarse">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding TestCommand}" />
+                <TapGestureRecognizer Command="{Binding NavegarARegistroCommand}" />
             </Label.GestureRecognizers>
         </Label>
     </StackLayout>

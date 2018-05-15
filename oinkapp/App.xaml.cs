@@ -23,6 +23,7 @@ namespace oinkapp
 			containerRegistry.RegisterForNavigation<NavigationPage>();
 			containerRegistry.RegisterForNavigation<SplashView, SplashViewModel>("Splash");
 			containerRegistry.RegisterForNavigation<AccesoView, AccesoViewModel>("Acceso");
+			containerRegistry.RegisterForNavigation<RegistroView, RegistroViewModel>("Registro");
 		}
 	}
 }

@@ -5,7 +5,7 @@ using Prism.Navigation;
 
 namespace oinkapp.ViewModels
 {
-	public class SplashViewModel : BindableBase
+	public class SplashViewModel : ViewModelBase
 	{
 		INavigationService _navigationService;
 		public SplashViewModel(INavigationService navigationService)
