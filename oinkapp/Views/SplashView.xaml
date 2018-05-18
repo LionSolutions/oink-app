@@ -8,7 +8,7 @@
             <Label Text="¡Bienvenido a Oink!" 
                    FontSize="Large" 
                    FontAttributes="Bold"/>
-            <Image Source="pig_app.jpg" 
+            <Image Source="icon_main.png" 
                    Aspect="AspectFit"
                    VerticalOptions="FillAndExpand"
                    HorizontalOptions="FillAndExpand"/>

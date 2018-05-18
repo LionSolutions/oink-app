@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2" />
@@ -56,6 +55,9 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2" />
     <PackageReference Include="Prism.Unity.Forms">
       <Version>7.0.0.396</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.0.0.482510</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -85,7 +87,8 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\drawable\pig_app.jpg" />
+    <AndroidResource Include="Resources\drawable\icon_app.png" />
+    <AndroidResource Include="Resources\drawable\icon_main.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

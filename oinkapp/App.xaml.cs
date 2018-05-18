@@ -15,15 +15,17 @@ namespace oinkapp
 		protected override void OnInitialized()
 		{
 			InitializeComponent();
-			NavigationService.NavigateAsync("Splash");
+			NavigationService.NavigateAsync("MasterDetail");
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
 			containerRegistry.RegisterForNavigation<NavigationPage>();
 			containerRegistry.RegisterForNavigation<SplashView, SplashViewModel>("Splash");
-			containerRegistry.RegisterForNavigation<AccesoView, AccesoViewModel>("Acceso");
-			containerRegistry.RegisterForNavigation<RegistroView, RegistroViewModel>("Registro");
+            containerRegistry.RegisterForNavigation<AccesoView, AccesoViewModel>("Acceso");
+            containerRegistry.RegisterForNavigation<RegistroView, RegistroViewModel>("Registro");
+
+            containerRegistry.RegisterForNavigation<MasterDetailAhorro, MasterDetailAhorroViewModel>("MasterDetail");
 		}
 	}
 }

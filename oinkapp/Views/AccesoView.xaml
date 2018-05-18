@@ -8,7 +8,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-    <Image Grid.Row="0" Source="pig_app.jpg" 
+    <Image Grid.Row="0" Source="icon_app.png" 
            Aspect="AspectFit"
                 Margin="40"/>
     <StackLayout Grid.Row="1" VerticalOptions="Start">
