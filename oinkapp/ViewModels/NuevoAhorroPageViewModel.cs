@@ -1,10 +1,11 @@
 ﻿using System;
 namespace oinkapp.ViewModels
 {
-    public class NuevoAhorroPageViewModel
+    public class NuevoAhorroPageViewModel:ViewModelBase
     {
         public NuevoAhorroPageViewModel()
         {
+            Title = "Nuevo Ahorro";
         }
     }
 }
