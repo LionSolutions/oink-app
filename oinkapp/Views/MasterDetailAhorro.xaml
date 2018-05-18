@@ -12,6 +12,12 @@
                 <Button Text="Nuevo Ahorro"
                         Command="{Binding OnNavigateCommand}"
                         CommandParameter="NavigationPage/NuevoAhorro"/>
+                <Button Text="Donde comprar"
+                        Command="{Binding OnNavigateCommand}"
+                        CommandParameter="NavigationPage/EnlacesAhorro"/>
+
+
+                
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>

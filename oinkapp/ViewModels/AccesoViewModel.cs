@@ -19,7 +19,7 @@ namespace oinkapp.ViewModels
 
         private void NavegarAMain()
         {
-            _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/NuevoAhorro", UriKind.Absolute));
+            _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/ListaAhorro", UriKind.Absolute));
         }
 
         private void NavegarARegistro()
