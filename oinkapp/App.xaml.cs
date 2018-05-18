@@ -15,7 +15,7 @@ namespace oinkapp
 		protected override void OnInitialized()
 		{
 			InitializeComponent();
-			NavigationService.NavigateAsync("MasterDetail");
+            NavigationService.NavigateAsync("Acceso");
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -26,6 +26,10 @@ namespace oinkapp
             containerRegistry.RegisterForNavigation<RegistroView, RegistroViewModel>("Registro");
 
             containerRegistry.RegisterForNavigation<MasterDetailAhorro, MasterDetailAhorroViewModel>("MasterDetail");
+            containerRegistry.RegisterForNavigation<ListaAhorroPage, ListaAhorroPageViewModel>("ListaAhorro");
+            containerRegistry.RegisterForNavigation<NuevoAhorroPage, NuevoAhorroPageViewModel>("NuevoAhorro");
+
+
 		}
 	}
 }

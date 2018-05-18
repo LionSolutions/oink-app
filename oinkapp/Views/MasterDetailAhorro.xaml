@@ -4,13 +4,22 @@
                   xmlns:views="clr-namespace:oinkapp.Views"
                   x:Class="oinkapp.Views.MasterDetailAhorro">
     <MasterDetailPage.Master>
-        <views:MasterAhorroPage x:Name="masterAhorro"/>
+        <ContentPage Title="Menú">
+            <StackLayout BackgroundColor="Silver" Padding="20">
+                <Button Text="Mis ahorros"
+                        Command="{Binding OnNavigateCommand}"
+                        CommandParameter="NavigationPage/ListaAhorro"/>
+                <Button Text="Nuevo Ahorro"
+                        Command="{Binding OnNavigateCommand}"
+                        CommandParameter="NavigationPage/NuevoAhorro"/>
+            </StackLayout>
+        </ContentPage>
     </MasterDetailPage.Master>
-   <MasterDetailPage.Detail>
+   <!--<MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
                 <views:ListaAhorroPage/>
             </x:Arguments>
         </NavigationPage>
-    </MasterDetailPage.Detail>
+    </MasterDetailPage.Detail>-->
 </MasterDetailPage>

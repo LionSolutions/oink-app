@@ -14,7 +14,7 @@
     <StackLayout Grid.Row="1" VerticalOptions="Start">
         <Entry Placeholder="Correo"/>
         <Entry Placeholder="Clave"/>
-        <Button Text="Acceder"/>
+        <Button Text="Acceder" Command="{Binding NavegarAMainCommand}"/>
         <Label Text="Registrarse">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding NavegarARegistroCommand}" />

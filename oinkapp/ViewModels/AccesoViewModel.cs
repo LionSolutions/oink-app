@@ -12,15 +12,22 @@ namespace oinkapp.ViewModels
 		{
 			_navigationService = navigationService;
 			NavegarARegistroCommand = new DelegateCommand(NavegarARegistro);
+            NavegarAMainCommand = new DelegateCommand(NavegarAMain);
 
 			Title = "Acceso";
 		}
 
-		private void NavegarARegistro()
+        private void NavegarAMain()
+        {
+            _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/NuevoAhorro", UriKind.Absolute));
+        }
+
+        private void NavegarARegistro()
 		{
 			_navigationService.NavigateAsync("Registro");
 		}
 
-		public DelegateCommand NavegarARegistroCommand { get; private set; }
+        public DelegateCommand NavegarARegistroCommand { get; private set; }
+        public DelegateCommand NavegarAMainCommand { get; private set; }
 	}
 }

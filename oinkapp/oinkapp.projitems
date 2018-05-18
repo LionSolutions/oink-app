@@ -30,7 +30,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MasterAhorroPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NuevoAhorroPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -58,11 +58,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ListaAhorroPage.xaml.cs">
       <DependentUpon>ListaAhorroPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MasterAhorroPage.xaml.cs">
-      <DependentUpon>MasterAhorroPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ControlClass\MasterPageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MasterDetailAhorroViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NuevoAhorroPage.xaml.cs">
+      <DependentUpon>NuevoAhorroPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ListaAhorroPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NuevoAhorroPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />
