@@ -14,8 +14,9 @@ namespace oinkapp
 	{
 		protected override void OnInitialized()
 		{
-			InitializeComponent();
-            NavigationService.NavigateAsync("Splash");
+            InitializeComponent();
+            //NavigationService.NavigateAsync("Splash");
+            NavigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/ListaAhorro", UriKind.Absolute));
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)

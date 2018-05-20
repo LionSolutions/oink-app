@@ -14,7 +14,7 @@ namespace oinkapp.Views
             //masterAhorro.ListView.ItemSelected += ListView_ItemSelected;
         }
 
-        public bool IsPresentedAfterNavigation { get { return true; }}
+        public bool IsPresentedAfterNavigation { get { return false; }}
 
         //void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         //{
