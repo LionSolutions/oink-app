@@ -90,5 +90,7 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)icon_app.png" />
     <None Include="$(MSBuildThisFileDirectory)icon_main.png" />
+    <None Include="$(MSBuildThisFileDirectory)compras.png" />
+    <None Include="$(MSBuildThisFileDirectory)monedas.png" />
   </ItemGroup>
 </Project>

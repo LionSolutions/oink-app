@@ -93,6 +93,8 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\icon_app.png" />
     <AndroidResource Include="Resources\drawable\icon_main.png" />
+    <AndroidResource Include="Resources\drawable\compras.png" />
+    <AndroidResource Include="Resources\drawable\monedas.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

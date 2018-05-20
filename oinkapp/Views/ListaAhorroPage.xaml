@@ -2,29 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="oinkapp.Views.ListaAhorroPage" 
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             Icon="monedas.png">
+   <!-- <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Agregar" Command="{Binding AgregarNuevoCommand}"/>
+    </ContentPage.ToolbarItems>-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="templateAhorro">
+            <ViewCell>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding Cantidad}" Grid.Column="0"/>
+                    <Label Text="{Binding FechaDeposito}" Grid.Column="1"/>
+                </Grid>
+                    </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <Grid>
-        <Grid.Resources>
-            <ResourceDictionary>
-                <DataTemplate x:Key="templateAhorro">
-                <ViewCell>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Cantidad}" Grid.Column="0"/>
-                        <Label Text="{Binding FechaDeposito}" Grid.Column="1"/>
-                    </Grid>
-                        </ViewCell>
-                </DataTemplate>
-            </ResourceDictionary>
-        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand">
+        <StackLayout Grid.Row="0" 
+                     VerticalOptions="CenterAndExpand">
             <Label Text="{Binding AhorroTotal}" 
                    HorizontalTextAlignment="Center"
                    FontSize="60"/>
@@ -32,10 +39,28 @@
                    HorizontalTextAlignment="Center"
                    FontSize="20"/>
         </StackLayout>
-        <Grid Grid.Row="1">
-            <ListView ItemsSource="{Binding ListaAhorros}" 
-                      ItemTemplate="{StaticResource templateAhorro}"
-                      />
+        <Grid Grid.Row="1" HeightRequest="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Entry x:Name="entryCantidad" Grid.Column="0" Keyboard="Numeric" Text="{Binding CantidadAgregar}"/>
+            <Button Grid.Column="1" 
+                    Text="Agregar"
+                    Command="{Binding AgregarNuevoCommand}"/>
         </Grid>
+
+        <StackLayout Grid.Row="2">
+             <Grid HeightRequest="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Cantidad" Grid.Column="0" FontAttributes="Bold"/>
+                <Label Text="Fecha Deposito" Grid.Column="1" FontAttributes="Bold"/>
+            </Grid>
+            <ListView ItemsSource="{Binding ListaAhorros}" 
+                      ItemTemplate="{StaticResource templateAhorro}"/>
+        </StackLayout>
     </Grid>
 </ContentPage>

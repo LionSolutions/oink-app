@@ -6,6 +6,7 @@ using oinkapp.Model;
 using System.Collections;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using Prism.Commands;
 
 namespace oinkapp.ViewModels
 {
@@ -17,18 +18,31 @@ namespace oinkapp.ViewModels
         {
             _fileHelper = DependencyService.Get<IFileHelper>();
             var t = _fileHelper.GetLocalFilePath("TodoSQLite.db3");
-            _ahorroDatabase = new AhorroItemDatabase(_fileHelper.GetLocalFilePath("TodoSQLite.db3"));
-
-            CheckAndFill();
+            _ahorroDatabase = new AhorroItemDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
 
             UpdateLista();
             Title = "Mi alcancía";
+
+            AgregarNuevoCommand = new DelegateCommand(AgregarNuevo);
+        }
+
+        void AgregarNuevo()
+        {
+            var cantidad = new AhorroItem()
+            {
+                Cantidad = CantidadAgregar,
+                FechaDeposito = DateTime.Now
+            };
+            _ahorroDatabase.SaveItemAsync(cantidad);
+
+            UpdateLista();
+            CantidadAgregar = 0;
         }
 
         async void UpdateLista()
         {
             var lista = await _ahorroDatabase.GetItemsAsync();
-            ListaAhorros = lista;
+            ListaAhorros = lista.OrderByDescending(ele => ele.FechaDeposito).ToList();
             AhorroTotal = ListaAhorros.Sum(ah => ah.Cantidad);
         }
 
@@ -45,6 +59,15 @@ namespace oinkapp.ViewModels
             get => _AhorroTotal;
             set => SetProperty(ref _AhorroTotal, value);
         }
+        private decimal _CantidadAgregar;
+        public decimal CantidadAgregar
+        {
+            get => _CantidadAgregar;
+            set => SetProperty(ref _CantidadAgregar, value);
+        }
+
+        public DelegateCommand AgregarNuevoCommand { get; private set; }
+
         async void CheckAndFill()
         {
             var elements = await _ahorroDatabase.GetItemsAsync();
