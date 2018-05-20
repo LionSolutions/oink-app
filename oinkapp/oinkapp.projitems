@@ -73,12 +73,19 @@
       <DependentUpon>EnlacesAhorroPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EnlacesAhorroPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\AhorroItemDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\AhorroItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\DeseoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DeseoItemDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)ControlClass\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)icon_app.png" />

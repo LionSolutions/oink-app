@@ -6,7 +6,7 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Menú">
             <StackLayout BackgroundColor="Silver" Padding="20">
-                <Button Text="Mis ahorros"
+                <Button Text="Mi alcancía"
                         Command="{Binding OnNavigateCommand}"
                         CommandParameter="NavigationPage/ListaAhorro"/>
                 <Button Text="Nuevo Ahorro"
@@ -15,17 +15,7 @@
                 <Button Text="Donde comprar"
                         Command="{Binding OnNavigateCommand}"
                         CommandParameter="NavigationPage/EnlacesAhorro"/>
-
-
-                
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
-   <!--<MasterDetailPage.Detail>
-        <NavigationPage>
-            <x:Arguments>
-                <views:ListaAhorroPage/>
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>-->
 </MasterDetailPage>

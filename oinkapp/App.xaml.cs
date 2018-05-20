@@ -10,19 +10,28 @@ using Prism.Ioc;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace oinkapp
 {
-	public partial class App : PrismApplication
-	{
-		protected override void OnInitialized()
-		{
-            InitializeComponent();
-            //NavigationService.NavigateAsync("Splash");
-            NavigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/ListaAhorro", UriKind.Absolute));
-		}
+    public partial class App : PrismApplication
+    {
+        protected override void OnInitialized()
+        {
+            try
+            {
 
-		protected override void RegisterTypes(IContainerRegistry containerRegistry)
-		{
-			containerRegistry.RegisterForNavigation<NavigationPage>();
-			containerRegistry.RegisterForNavigation<SplashView, SplashViewModel>("Splash");
+                InitializeComponent();
+                //NavigationService.NavigateAsync("Splash");
+                NavigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/ListaAhorro", UriKind.Absolute));
+
+            }
+            catch (Exception ex)
+            {
+                var t = ex.Message;
+            }
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<SplashView, SplashViewModel>("Splash");
             containerRegistry.RegisterForNavigation<AccesoView, AccesoViewModel>("Acceso");
             containerRegistry.RegisterForNavigation<RegistroView, RegistroViewModel>("Registro");
 
@@ -32,6 +41,6 @@ namespace oinkapp
             containerRegistry.RegisterForNavigation<EnlacesAhorroPage, EnlacesAhorroPageViewModel>("EnlacesAhorro");
 
 
-		}
-	}
+        }
+    }
 }
