@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace oinkapp.Views
 {
-    public partial class NuevoAhorroPage : ContentPage
+    public partial class MisComprasPage : ContentPage
     {
-        public NuevoAhorroPage()
+        public MisComprasPage()
         {
             InitializeComponent();
         }

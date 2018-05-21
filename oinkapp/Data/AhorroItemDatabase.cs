@@ -18,7 +18,9 @@ namespace oinkapp.Data
 
         public Task<List<AhorroItem>> GetItemsAsync()
         {
-            return database.Table<AhorroItem>().ToListAsync();
+            return database.Table<AhorroItem>()
+                           .Where(element => !element.EsCompra)
+                           .ToListAsync();
         }
 
         public Task<AhorroItem> GetItemAsync(int id)

@@ -19,7 +19,7 @@ namespace oinkapp
 
                 InitializeComponent();
                 //NavigationService.NavigateAsync("Splash");
-                NavigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/ListaAhorro", UriKind.Absolute));
+                NavigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
 
             }
             catch (Exception ex)
@@ -37,8 +37,10 @@ namespace oinkapp
 
             containerRegistry.RegisterForNavigation<MasterDetailAhorro, MasterDetailAhorroViewModel>("MasterDetail");
             containerRegistry.RegisterForNavigation<ListaAhorroPage, ListaAhorroPageViewModel>("ListaAhorro");
-            containerRegistry.RegisterForNavigation<NuevoAhorroPage, NuevoAhorroPageViewModel>("NuevoAhorro");
+            containerRegistry.RegisterForNavigation<MisComprasPage, MisComprasViewModel>("MisCompras");
             containerRegistry.RegisterForNavigation<EnlacesAhorroPage, EnlacesAhorroPageViewModel>("EnlacesAhorro");
+
+            containerRegistry.RegisterForNavigation<AgregarCompraPage, AgregarCompraViewModel>("AgregarCompra");
 
 
         }

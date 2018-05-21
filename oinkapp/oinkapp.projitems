@@ -30,11 +30,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NuevoAhorroPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\EnlacesAhorroPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\EnlacesAhorroPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MisComprasPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AgregarCompraPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -64,11 +68,8 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ControlClass\MasterPageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MasterDetailAhorroViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NuevoAhorroPage.xaml.cs">
-      <DependentUpon>NuevoAhorroPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ListaAhorroPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NuevoAhorroPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MisComprasViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\EnlacesAhorroPage.xaml.cs">
       <DependentUpon>EnlacesAhorroPage.xaml</DependentUpon>
     </Compile>
@@ -78,6 +79,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\AhorroItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\DeseoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DeseoItemDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MisComprasPage.xaml.cs">
+      <DependentUpon>MisComprasPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AgregarCompraPage.xaml.cs">
+      <DependentUpon>AgregarCompraPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AgregarCompraViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />

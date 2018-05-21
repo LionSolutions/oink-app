@@ -17,8 +17,8 @@ namespace oinkapp.ViewModels
         public ListaAhorroPageViewModel()
         {
             _fileHelper = DependencyService.Get<IFileHelper>();
-            var t = _fileHelper.GetLocalFilePath("TodoSQLite.db3");
             _ahorroDatabase = new AhorroItemDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
+
 
             UpdateLista();
             Title = "Mi alcancía";

@@ -9,5 +9,7 @@ namespace oinkapp.Model
         public int Id { get; set; }
         public DateTime FechaDeposito { get; set; }
         public Decimal Cantidad { get; set; }
+        public bool EsCompra { get; set; }
+        public string NombreCompra { get; set; }
     }
 }

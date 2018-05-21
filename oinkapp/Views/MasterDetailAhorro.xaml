@@ -9,9 +9,9 @@
                 <Button Text="Mi alcancía"
                         Command="{Binding OnNavigateCommand}"
                         CommandParameter="NavigationPage/ListaAhorro"/>
-                <Button Text="Nuevo Ahorro"
+                <Button Text="Mis Compras"
                         Command="{Binding OnNavigateCommand}"
-                        CommandParameter="NavigationPage/NuevoAhorro"/>
+                        CommandParameter="NavigationPage/MisCompras"/>
                 <Button Text="Donde comprar"
                         Command="{Binding OnNavigateCommand}"
                         CommandParameter="NavigationPage/EnlacesAhorro"/>

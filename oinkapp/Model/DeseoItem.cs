@@ -10,6 +10,7 @@ namespace oinkapp.Model
         public string Descripcion { get; set; }
         public Decimal Precio { get; set; }
         public DateTime FechaRegistro { get; set; }
-        public DateTime FechaMeta  {  get; set; }
+        public DateTime FechaMeta { get; set; }
+
     }
 }
