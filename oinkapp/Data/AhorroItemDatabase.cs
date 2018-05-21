@@ -14,13 +14,20 @@ namespace oinkapp.Data
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<AhorroItem>().Wait();
+
+            //database.DropTableAsync<AhorroItem>();
         }
 
-        public Task<List<AhorroItem>> GetItemsAsync()
+        public Task<List<AhorroItem>> GetItemsAsync(string filtro = "")
         {
-            return database.Table<AhorroItem>()
-                           .Where(element => !element.EsCompra)
-                           .ToListAsync();
+            if (filtro == "")
+                return database.Table<AhorroItem>()
+                               .Where(element => !element.EsCompra)
+                               .ToListAsync();
+            else
+                return database.Table<AhorroItem>()
+                               .Where(element => element.EsCompra && element.NombreCompra == filtro)
+                               .ToListAsync();
         }
 
         public Task<AhorroItem> GetItemAsync(int id)

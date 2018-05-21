@@ -14,6 +14,8 @@ namespace oinkapp.Data
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<DeseoItem>().Wait();
+
+            //  database.DropTableAsync<DeseoItem>();
         }
 
         public Task<List<DeseoItem>> GetItemsAsync()

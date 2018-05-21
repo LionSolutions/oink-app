@@ -18,8 +18,8 @@ namespace oinkapp
             {
 
                 InitializeComponent();
-                //NavigationService.NavigateAsync("Splash");
-                NavigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
+                NavigationService.NavigateAsync("Splash");
+                //NavigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
 
             }
             catch (Exception ex)

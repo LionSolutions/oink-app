@@ -8,6 +8,18 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
+             <DataTemplate x:Key="templateAhorro">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Path=Cantidad,StringFormat='{0:C}'}" Grid.Column="0"/>
+                        <Label Text="{Binding Path=FechaDeposito,StringFormat='{}{0:dd/MMMM/yyyy}'}" Grid.Column="1"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
             <DataTemplate x:Key="templateCompra">
                 <ViewCell>
                     <Grid>
@@ -47,16 +59,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0"  BindingContext="{Binding DeseoSelected, Mode=TwoWay}">
-            <StackLayout>
-                <Label Text="{Binding Descripcion}" HorizontalOptions="Center"
-                       FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       FontSize="30"/>
-                <Label Text="Precio:" FontAttributes="Bold"/>
-                <Label Text="{Binding Precio}"/>
+<!--        <Grid Grid.Row="0"  BindingContext="{Binding DeseoSelected, Mode=TwoWay}">-->
+            <StackLayout Grid.Row="0" IsVisible="{Binding IsVisible}">
+                <ListView ItemsSource="{Binding AhorroSelected}" 
+                          ItemTemplate="{StaticResource templateAhorro}"/>
+                <Entry Text="{Binding CantidadAAgregar}"/>
+                <Button Text="Agregar" Command="{Binding AgregarCantidadCommand}"/>
             </StackLayout>
-        </Grid>
+<!--        </Grid>-->
         <ListView Grid.Row="1" 
                   ItemsSource="{Binding ListaCompras}" 
                   SelectedItem="{Binding DeseoSelected}"
@@ -64,6 +74,11 @@
                   HasUnevenRows="true"
                   CachingStrategy="RecycleElement" 
                   SeparatorVisibility="Default"
-                  SeparatorColor="Fuchsia"/>
+                  SeparatorColor="Fuchsia"
+                  RefreshAllowed="true"
+                  RefreshCommand="{Binding UpdateCompraCommand}"
+                  IsRefreshing="{Binding IsBusy}"
+                  IsPullToRefreshEnabled="true"
+                  />
     </Grid>
 </ContentPage>
