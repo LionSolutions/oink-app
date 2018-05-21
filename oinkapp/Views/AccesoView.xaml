@@ -12,8 +12,8 @@
            Aspect="AspectFit"
                 Margin="40"/>
     <StackLayout Grid.Row="1" VerticalOptions="Start">
-        <Entry Placeholder="Correo"/>
-        <Entry Placeholder="Clave"/>
+        <Entry Text="{Binding Usuario}" Placeholder="Correo"/>
+        <Entry Text="{Binding Clave}" Placeholder="Clave"/>
         <Button Text="Acceder" Command="{Binding NavegarAMainCommand}"/>
         <Label Text="Registrarse">
             <Label.GestureRecognizers>
