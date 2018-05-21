@@ -4,6 +4,7 @@ using Prism.Commands;
 using oinkapp.Data;
 using oinkapp.Interfaces;
 using Xamarin.Forms;
+using Prism.Navigation;
 
 namespace oinkapp.ViewModels
 {
@@ -12,8 +13,10 @@ namespace oinkapp.ViewModels
         DeseoItemDatabase _deseoItemDatabase;
         AhorroItemDatabase _ahorroItemDatabase;
         public IFileHelper _fileHelper;
-        public AgregarCompraViewModel()
+        INavigationService _navigationService;
+        public AgregarCompraViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             _fileHelper = DependencyService.Get<IFileHelper>();
 
             _deseoItemDatabase = new DeseoItemDatabase(_fileHelper.GetLocalFilePath("DeseoSQLite.db3"));
@@ -27,16 +30,12 @@ namespace oinkapp.ViewModels
         {
             DeseoCreado.FechaRegistro = DateTime.Now;
             var result = await _deseoItemDatabase.SaveItemAsync(DeseoCreado);
-            //if (result > 0)
-            //{
-            //    AhorroItem ahorro = new AhorroItem();
-            //    ahorro.EsCompra = true;
-            //    ahorro.NombreCompra = DeseoCreado.Descripcion;
-            //    await _ahorroItemDatabase.SaveItemAsync(ahorro);
-            //}
+
+            _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
         }
 
         public DelegateCommand GuardarDeseoCommand { get; private set; }
+
         private DeseoItem _DeseoCreado;
         public DeseoItem DeseoCreado
         {

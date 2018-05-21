@@ -58,15 +58,24 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-<!--        <Grid Grid.Row="0"  BindingContext="{Binding DeseoSelected, Mode=TwoWay}">-->
-            <StackLayout Grid.Row="0" IsVisible="{Binding IsVisible}">
-                <ListView ItemsSource="{Binding AhorroSelected}" 
-                          ItemTemplate="{StaticResource templateAhorro}"/>
-                <Entry Text="{Binding CantidadAAgregar}"/>
-                <Button Text="Agregar" Command="{Binding AgregarCantidadCommand}"/>
+        <StackLayout Grid.Row="0" IsVisible="{Binding IsVisible}">
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Tengo:"/>
+                <Label Text="{Binding TotalAhorrado}" FontAttributes="Bold"
+                       FontSize="20"/>
+             </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Faltan:"/>
+                <Label Text="{Binding TotalFalta}" FontAttributes="Bold"
+                       FontSize="20"/>
             </StackLayout>
-<!--        </Grid>-->
+            <Label Text="AHORROS" FontAttributes="Bold"/>
+            <ListView ItemsSource="{Binding AhorroSelected}" 
+                      ItemTemplate="{StaticResource templateAhorro}"/>
+            <Entry Text="{Binding CantidadAAgregar}"/>
+            <Button Text="Agregar" Command="{Binding AgregarCantidadCommand}"/>
+        </StackLayout>
         <ListView Grid.Row="1" 
                   ItemsSource="{Binding ListaCompras}" 
                   SelectedItem="{Binding DeseoSelected}"
@@ -78,7 +87,6 @@
                   RefreshAllowed="true"
                   RefreshCommand="{Binding UpdateCompraCommand}"
                   IsRefreshing="{Binding IsBusy}"
-                  IsPullToRefreshEnabled="true"
-                  />
+                  IsPullToRefreshEnabled="true"/>
     </Grid>
 </ContentPage>

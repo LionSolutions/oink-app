@@ -98,11 +98,27 @@ namespace oinkapp.ViewModels
                 IsVisible = true;
                 var lista = await _ahorroItemDatabase.GetItemsAsync(DeseoSelected.Descripcion);
                 AhorroSelected = new List<AhorroItem>(lista);
+                var tA = lista.Sum(o => o.Cantidad);
+                TotalAhorrado = tA;
+                TotalFalta = DeseoSelected.Precio - TotalAhorrado;
             }
             else
             {
                 IsVisible = false;
             }
+        }
+
+        private decimal _TotalAhorrado;
+        public decimal TotalAhorrado
+        {
+            get => _TotalAhorrado;
+            set => SetProperty(ref _TotalAhorrado, value);
+        }
+        private decimal _TotalFalta;
+        public decimal TotalFalta
+        {
+            get => _TotalFalta;
+            set => SetProperty(ref _TotalFalta, value);
         }
 
         private IList<AhorroItem> _AhorroSelected;
