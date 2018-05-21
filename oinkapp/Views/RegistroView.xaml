@@ -6,9 +6,10 @@
         <StackLayout VerticalOptions="CenterAndExpand" 
                      HorizontalOptions="FillAndExpand" 
                      Margin="10">
-            <Entry Placeholder="Usuario"/>
-            <Entry Placeholder="Correo"/>
-            <Entry Placeholder="Clave"/>
-            <Button Text="Registrarse"/>
+            <Entry Placeholder="Nombre" Text="{Binding Nombre}"/>
+            <Entry Placeholder="Correo" Text="{Binding Correo}"/>
+            <Entry Placeholder="Clave" Text="{Binding Clave}"
+                   IsPassword="true"/>
+            <Button Text="Registrarse" Command="{Binding RegistrarseCommand}"/>
         </StackLayout>
 </ContentPage>

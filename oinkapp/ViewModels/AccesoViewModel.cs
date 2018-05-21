@@ -17,12 +17,13 @@ namespace oinkapp.ViewModels
         public AccesoViewModel(INavigationService navigationService, IPageDialogService pageDialog)
         {
             _navigationService = navigationService;
-            NavegarARegistroCommand = new DelegateCommand(NavegarARegistro);
-            NavegarAMainCommand = new DelegateCommand(NavegarAMain);
-
             _fileHelper = Xamarin.Forms.DependencyService.Get<IFileHelper>();
             _pageDialogService = pageDialog;
+
             _usuarioItemDatabase = new UsuarioItemDataBase(_fileHelper.GetLocalFilePath("UsuarioSQLite.db3"));
+
+            NavegarARegistroCommand = new DelegateCommand(NavegarARegistro);
+            NavegarAMainCommand = new DelegateCommand(NavegarAMain);
 
             Title = "Acceso";
         }

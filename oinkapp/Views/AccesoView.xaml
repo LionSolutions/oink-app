@@ -13,8 +13,11 @@
                 Margin="40"/>
     <StackLayout Grid.Row="1" VerticalOptions="Start">
         <Entry Text="{Binding Usuario}" Placeholder="Correo"/>
-        <Entry Text="{Binding Clave}" Placeholder="Clave"/>
-        <Button Text="Acceder" Command="{Binding NavegarAMainCommand}"/>
+        <Entry Text="{Binding Clave}" 
+               Placeholder="Clave"
+               IsPassword="true"/>
+        <Button Text="Acceder" 
+                Command="{Binding NavegarAMainCommand}"/>
         <Label Text="Registrarse">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding NavegarARegistroCommand}" />
