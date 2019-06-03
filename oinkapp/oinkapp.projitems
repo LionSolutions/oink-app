@@ -52,6 +52,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccesoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SplashViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BurgerMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SplashView.xaml.cs">
       <DependentUpon>SplashView.xaml</DependentUpon>
     </Compile>
@@ -92,7 +95,6 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)ControlClass\" />
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
@@ -102,5 +104,16 @@
     <None Include="$(MSBuildThisFileDirectory)icon_main.png" />
     <None Include="$(MSBuildThisFileDirectory)compras.png" />
     <None Include="$(MSBuildThisFileDirectory)monedas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BurgerMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="C:\repos\oink-app\oinkapp\Views\BurgerMenuPage.xaml.cs">
+      <DependentUpon>BurgerMenuPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

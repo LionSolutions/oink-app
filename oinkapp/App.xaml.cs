@@ -1,31 +1,19 @@
-using System;
-using Prism;
-using Prism.Unity;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using oinkapp.ViewModels;
 using oinkapp.Views;
 using Prism.Ioc;
+using Prism.Unity;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace oinkapp
 {
     public partial class App : PrismApplication
     {
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
-            try
-            {
-
-                InitializeComponent();
-                //NavigationService.NavigateAsync("Splash");
-                NavigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
-
-            }
-            catch (Exception ex)
-            {
-                var t = ex.Message;
-            }
+            InitializeComponent();
+            await NavigationService.NavigateAsync("BurgerMenu");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -34,15 +22,11 @@ namespace oinkapp
             containerRegistry.RegisterForNavigation<SplashView, SplashViewModel>("Splash");
             containerRegistry.RegisterForNavigation<AccesoView, AccesoViewModel>("Acceso");
             containerRegistry.RegisterForNavigation<RegistroView, RegistroViewModel>("Registro");
-
-            containerRegistry.RegisterForNavigation<MasterDetailAhorro, MasterDetailAhorroViewModel>("MasterDetail");
             containerRegistry.RegisterForNavigation<ListaAhorroPage, ListaAhorroPageViewModel>("ListaAhorro");
             containerRegistry.RegisterForNavigation<MisComprasPage, MisComprasViewModel>("MisCompras");
             containerRegistry.RegisterForNavigation<EnlacesAhorroPage, EnlacesAhorroPageViewModel>("EnlacesAhorro");
-
             containerRegistry.RegisterForNavigation<AgregarCompraPage, AgregarCompraViewModel>("AgregarCompra");
-
-
+            containerRegistry.RegisterForNavigation<BurgerMenuPage>("BurgerMenu");
         }
     }
 }
