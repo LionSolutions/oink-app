@@ -1,18 +1,17 @@
-﻿using System;
-using oinkapp.Data;
+﻿using oinkapp.Data;
 using oinkapp.Interfaces;
-using Xamarin.Forms;
 using oinkapp.Model;
-using System.Collections.Generic;
-using System.Linq;
 using Prism.Commands;
 using Prism.Navigation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
 {
     public class MisComprasViewModel : ViewModelBase
     {
-
         public DeseoItemDatabase _deseoItemDatabase;
         public AhorroItemDatabase _ahorroItemDatabase;
 
@@ -141,8 +140,8 @@ namespace oinkapp.ViewModels
             }
         }
 
-        private Decimal _CantidadAAgregar;
-        public Decimal CantidadAAgregar
+        private decimal _CantidadAAgregar;
+        public decimal CantidadAAgregar
         {
             get => _CantidadAAgregar;
             set => SetProperty(ref _CantidadAAgregar, value);

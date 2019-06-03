@@ -1,5 +1,5 @@
-﻿using System;
-using SQLite;
+﻿using SQLite;
+using System;
 
 namespace oinkapp.Model
 {
@@ -8,9 +8,8 @@ namespace oinkapp.Model
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Descripcion { get; set; }
-        public Decimal Precio { get; set; }
+        public decimal Precio { get; set; }
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaMeta { get; set; }
-
     }
 }

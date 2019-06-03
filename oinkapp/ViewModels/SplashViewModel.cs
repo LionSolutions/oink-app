@@ -1,11 +1,9 @@
-﻿using System;
-using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Commands;
 using Prism.Navigation;
 
 namespace oinkapp.ViewModels
 {
-	public class SplashViewModel : ViewModelBase
+    public class SplashViewModel : ViewModelBase
 	{
 		INavigationService _navigationService;
 		public SplashViewModel(INavigationService navigationService)

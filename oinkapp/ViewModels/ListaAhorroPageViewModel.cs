@@ -1,12 +1,11 @@
-﻿using System;
-using oinkapp.Data;
+﻿using oinkapp.Data;
 using oinkapp.Interfaces;
-using System.Linq;
 using oinkapp.Model;
-using System.Collections;
-using System.Collections.Generic;
-using Xamarin.Forms;
 using Prism.Commands;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
 {
@@ -18,7 +17,6 @@ namespace oinkapp.ViewModels
         {
             _fileHelper = DependencyService.Get<IFileHelper>();
             _ahorroDatabase = new AhorroItemDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
-
 
             UpdateLista();
             Title = "Mi alcancía";

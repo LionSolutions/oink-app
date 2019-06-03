@@ -1,10 +1,10 @@
-﻿using System;
+﻿using oinkapp.Data;
+using oinkapp.Interfaces;
 using oinkapp.Model;
 using Prism.Commands;
-using oinkapp.Data;
-using oinkapp.Interfaces;
-using Xamarin.Forms;
 using Prism.Navigation;
+using System;
+using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
 {
@@ -31,7 +31,7 @@ namespace oinkapp.ViewModels
             DeseoCreado.FechaRegistro = DateTime.Now;
             var result = await _deseoItemDatabase.SaveItemAsync(DeseoCreado);
 
-            _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
+            await _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
         }
 
         public DelegateCommand GuardarDeseoCommand { get; private set; }

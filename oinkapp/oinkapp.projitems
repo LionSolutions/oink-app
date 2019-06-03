@@ -22,10 +22,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MasterDetailAhorro.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ListaAhorroPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -63,14 +59,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegistroViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MasterDetailAhorro.xaml.cs">
-      <DependentUpon>MasterDetailAhorro.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ListaAhorroPage.xaml.cs">
       <DependentUpon>ListaAhorroPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ControlClass\MasterPageItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MasterDetailAhorroViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ListaAhorroPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MisComprasViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\EnlacesAhorroPage.xaml.cs">
@@ -95,7 +86,6 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ControlClass\" />
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
   </ItemGroup>

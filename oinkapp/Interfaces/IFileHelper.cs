@@ -1,5 +1,4 @@
-﻿using System;
-namespace oinkapp.Interfaces
+﻿namespace oinkapp.Interfaces
 {
     public interface IFileHelper
     {

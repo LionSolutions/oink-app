@@ -1,11 +1,10 @@
-﻿using System;
-using oinkapp.Data;
+﻿using oinkapp.Data;
 using oinkapp.Interfaces;
 using oinkapp.Model;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 
 namespace oinkapp.ViewModels
 {
@@ -44,7 +43,7 @@ namespace oinkapp.ViewModels
                 usuarioAInsertar.Correo = Correo;
                 usuarioAInsertar.Clave = Clave;
 
-                _usuarioItemDatabase.SaveItemAsync(usuarioAInsertar);
+                await _usuarioItemDatabase.SaveItemAsync(usuarioAInsertar);
                 await _navigationService.NavigateAsync("Acceso");
             }
         }

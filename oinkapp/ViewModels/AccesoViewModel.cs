@@ -1,9 +1,9 @@
-﻿using System;
-using oinkapp.Data;
+﻿using oinkapp.Data;
 using oinkapp.Interfaces;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 
 namespace oinkapp.ViewModels
 {
@@ -38,7 +38,6 @@ namespace oinkapp.ViewModels
         }
 
         private void NavegarARegistro() => _navigationService.NavigateAsync("Registro");
-
 
         public DelegateCommand NavegarARegistroCommand { get; private set; }
         public DelegateCommand NavegarAMainCommand { get; private set; }

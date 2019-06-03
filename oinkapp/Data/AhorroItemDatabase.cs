@@ -1,8 +1,7 @@
-﻿using System;
+﻿using oinkapp.Model;
+using SQLite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using oinkapp.Model;
-using SQLite;
 
 namespace oinkapp.Data
 {

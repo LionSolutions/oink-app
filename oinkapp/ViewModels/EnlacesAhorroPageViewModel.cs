@@ -1,5 +1,5 @@
-﻿using System;
-using Prism.Commands;
+﻿using Prism.Commands;
+using System;
 using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
@@ -8,7 +8,6 @@ namespace oinkapp.ViewModels
     {
         public EnlacesAhorroPageViewModel()
         {
-
             NavigateToUrlCommand = new DelegateCommand<string>(NavigateToUrl);
             Title = "Enlaces";
         }
