@@ -43,6 +43,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ActionCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NotificationEnabledObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AccesoView.xaml.cs">
       <DependentUpon>AccesoView.xaml</DependentUpon>
     </Compile>
@@ -85,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
   </ItemGroup>

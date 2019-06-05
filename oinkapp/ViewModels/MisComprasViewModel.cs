@@ -1,8 +1,7 @@
 ﻿using oinkapp.Data;
 using oinkapp.Interfaces;
 using oinkapp.Model;
-using Prism.Commands;
-using Prism.Navigation;
+using oinkapp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +15,14 @@ namespace oinkapp.ViewModels
         public AhorroItemDatabase _ahorroItemDatabase;
 
         public IFileHelper _fileHelper;
-        INavigationService _navigationService;
-        public MisComprasViewModel(INavigationService navigationService)
+        INavigation _navigationService;
+        public MisComprasViewModel(INavigation navigationService)
         {
             _navigationService = navigationService;
             _fileHelper = DependencyService.Get<IFileHelper>();
 
             _deseoItemDatabase = new DeseoItemDatabase(_fileHelper.GetLocalFilePath("DeseoSQLite.db3"));
             _ahorroItemDatabase = new AhorroItemDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
-
-            AgregarCompraCommand = new DelegateCommand(AgregarCompra);
-            UpdateCompraCommand = new DelegateCommand(UpdateList);
-            AgregarCantidadCommand = new DelegateCommand(AgregarCantidad);
 
             //CheckAndFill();
             UpdateList();
@@ -48,12 +43,61 @@ namespace oinkapp.ViewModels
 
         async void AgregarCompra()
         {
-            await _navigationService.NavigateAsync("AgregarCompra");
+            await _navigationService.PushAsync(new AgregarCompraPage());
         }
 
-        public DelegateCommand AgregarCompraCommand { get; private set; }
-        public DelegateCommand UpdateCompraCommand { get; private set; }
-        public DelegateCommand AgregarCantidadCommand { get; private set; }
+        private ActionCommand _AgregarCompraCommand;
+
+        public ActionCommand AgregarCompraCommand
+        {
+            get
+            {
+                if (_AgregarCompraCommand == null)
+                {
+                    _AgregarCompraCommand = new ActionCommand(AgregarCompra);
+                }
+                return _AgregarCompraCommand;
+            }
+            set
+            {
+                _AgregarCompraCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ActionCommand _UpdateCompraCommand;
+
+        public ActionCommand UpdateCompraCommand
+        {
+            get
+            {
+                if (_UpdateCompraCommand == null)
+                {
+                    _UpdateCompraCommand = new ActionCommand(UpdateList);
+                }
+                return _UpdateCompraCommand;
+            }
+            set
+            {
+                _UpdateCompraCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ActionCommand _AgregarCantidadCommand;
+
+        public ActionCommand AgregarCantidadCommand
+        {
+            get
+            {
+                if (_AgregarCantidadCommand == null)
+                {
+                    _AgregarCantidadCommand = new ActionCommand(AgregarCantidad);
+                }
+                return _AgregarCantidadCommand;
+            }
+            set { _AgregarCantidadCommand = value; }
+        }
 
         async void CheckAndFill()
         {
@@ -85,8 +129,9 @@ namespace oinkapp.ViewModels
             }
             set
             {
-                SetProperty(ref _DeseoSelected, value);
+                _DeseoSelected = value;
                 SetearAhorro();
+                OnPropertyChanged();
             }
         }
 
@@ -111,13 +156,21 @@ namespace oinkapp.ViewModels
         public decimal TotalAhorrado
         {
             get => _TotalAhorrado;
-            set => SetProperty(ref _TotalAhorrado, value);
+            set
+            {
+                _TotalAhorrado = value;
+                OnPropertyChanged();
+            }
         }
         private decimal _TotalFalta;
         public decimal TotalFalta
         {
             get => _TotalFalta;
-            set => SetProperty(ref _TotalFalta, value);
+            set
+            {
+                _TotalFalta = value;
+                OnPropertyChanged();
+            }
         }
 
         private IList<AhorroItem> _AhorroSelected;
@@ -126,7 +179,8 @@ namespace oinkapp.ViewModels
             get => _AhorroSelected;
             set
             {
-                SetProperty(ref _AhorroSelected, value);
+                _AhorroSelected = value;
+                OnPropertyChanged();
             }
         }
 
@@ -136,7 +190,8 @@ namespace oinkapp.ViewModels
             get => _ListaCompras;
             set
             {
-                SetProperty(ref _ListaCompras, value);
+                _ListaCompras = value;
+                OnPropertyChanged();
             }
         }
 
@@ -144,14 +199,22 @@ namespace oinkapp.ViewModels
         public decimal CantidadAAgregar
         {
             get => _CantidadAAgregar;
-            set => SetProperty(ref _CantidadAAgregar, value);
+            set
+            {
+                _CantidadAAgregar = value;
+                OnPropertyChanged();
+            }
         }
 
         private bool _IsVisible;
         public bool IsVisible
         {
             get => _IsVisible;
-            set => SetProperty(ref _IsVisible, value);
+            set
+            {
+                _IsVisible = value;
+                OnPropertyChanged();
+            }
         }
         void UpdateList()
         {

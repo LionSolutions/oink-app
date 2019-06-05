@@ -1,8 +1,7 @@
 ﻿using oinkapp.Data;
 using oinkapp.Interfaces;
 using oinkapp.Model;
-using Prism.Commands;
-using Prism.Navigation;
+using oinkapp.Views;
 using System;
 using Xamarin.Forms;
 
@@ -10,37 +9,73 @@ namespace oinkapp.ViewModels
 {
     public class AgregarCompraViewModel : ViewModelBase
     {
+        #region Variables
+
         DeseoItemDatabase _deseoItemDatabase;
         AhorroItemDatabase _ahorroItemDatabase;
         public IFileHelper _fileHelper;
-        INavigationService _navigationService;
-        public AgregarCompraViewModel(INavigationService navigationService)
+        INavigation _navigationService;
+
+        #endregion Variables
+
+        #region Constructor
+
+        public AgregarCompraViewModel(INavigation navigationService)
         {
             _navigationService = navigationService;
+            Initialize();
+        }
+
+        #endregion Constructor
+
+        private void Initialize()
+        {
+            //_navigationService = navigationService;
             _fileHelper = DependencyService.Get<IFileHelper>();
 
             _deseoItemDatabase = new DeseoItemDatabase(_fileHelper.GetLocalFilePath("DeseoSQLite.db3"));
             _ahorroItemDatabase = new AhorroItemDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
 
-            GuardarDeseoCommand = new DelegateCommand(GuardarDeseo);
             Title = "Agregar compra";
         }
 
         async void GuardarDeseo()
         {
             DeseoCreado.FechaRegistro = DateTime.Now;
-            var result = await _deseoItemDatabase.SaveItemAsync(DeseoCreado);
+            _ = await _deseoItemDatabase.SaveItemAsync(DeseoCreado);
 
-            await _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
+            await _navigationService.PushAsync(new BurgerMenuPage());
+            //await _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
         }
 
-        public DelegateCommand GuardarDeseoCommand { get; private set; }
+        #region Properties
+
+        private ActionCommand _GuardarDeseoCommand;
+
+        public ActionCommand GuardarDeseoCommand
+        {
+            get
+            {
+                if (_GuardarDeseoCommand == null)
+                {
+                    _GuardarDeseoCommand = new ActionCommand(GuardarDeseo);
+                };
+
+                return _GuardarDeseoCommand;
+            }
+            set { _GuardarDeseoCommand = value; }
+        }
 
         private DeseoItem _DeseoCreado;
         public DeseoItem DeseoCreado
         {
             get => _DeseoCreado ?? new DeseoItem();
-            set => SetProperty(ref _DeseoCreado, value);
+            set
+            {
+                _DeseoCreado = value;
+                OnPropertyChanged();
+            }
         }
+        #endregion Properties
     }
 }

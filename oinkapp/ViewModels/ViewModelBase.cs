@@ -1,8 +1,6 @@
-﻿using Prism.Mvvm;
-
-namespace oinkapp.ViewModels
+﻿namespace oinkapp.ViewModels
 {
-    public class ViewModelBase : BindableBase
+    public class ViewModelBase : NotificationEnabledObject
     {
         public ViewModelBase()
         {
@@ -11,13 +9,21 @@ namespace oinkapp.ViewModels
         public string Title
         {
             get => _Title;
-            set => SetProperty(ref _Title, value);
+            set
+            {
+                _Title = value;
+                OnPropertyChanged();
+            }
         }
         private bool _IsBusy;
         public bool IsBusy
         {
             get => _IsBusy;
-            set => SetProperty(ref _IsBusy, value);
+            set
+            {
+                _IsBusy = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using oinkapp.Data;
 using oinkapp.Interfaces;
 using oinkapp.Model;
-using Prism.Commands;
-using Prism.Navigation;
-using Prism.Services;
+using oinkapp.Views;
 using System;
+using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
 {
@@ -12,20 +11,16 @@ namespace oinkapp.ViewModels
     {
         UsuarioItemDataBase _usuarioItemDatabase;
         public IFileHelper _fileHelper;
-        INavigationService _navigationService;
-        IPageDialogService _pageDialogService;
+        INavigation _navigationService;
+        //IPageDialogService _pageDialogService;
 
-        public RegistroViewModel(INavigationService navigationService, IPageDialogService pageDialog)
+        public RegistroViewModel(INavigation navigationService)
         {
             _navigationService = navigationService;
-            _fileHelper = Xamarin.Forms.DependencyService.Get<IFileHelper>();
-            _pageDialogService = pageDialog;
-
+            _fileHelper = DependencyService.Get<IFileHelper>();
             _usuarioItemDatabase = new UsuarioItemDataBase(_fileHelper.GetLocalFilePath("UsuarioSQLite.db3"));
 
             Title = "Registro";
-
-            RegistrarseCommand = new DelegateCommand(Registrarse);
         }
 
         async void Registrarse()
@@ -34,7 +29,7 @@ namespace oinkapp.ViewModels
                 || String.IsNullOrEmpty(Correo)
                 || String.IsNullOrEmpty(Clave))
             {
-                await _pageDialogService.DisplayAlertAsync("Registro", "Algunos campos estan vacios, revise", "Ok");
+                await App.Current.MainPage.DisplayAlert("Registro", "Algunos campos estan vacios, revise", "Ok");
             }
             else
             {
@@ -44,28 +39,56 @@ namespace oinkapp.ViewModels
                 usuarioAInsertar.Clave = Clave;
 
                 await _usuarioItemDatabase.SaveItemAsync(usuarioAInsertar);
-                await _navigationService.NavigateAsync("Acceso");
+                await _navigationService.PushAsync(new AccesoView());
             }
         }
 
-        public DelegateCommand RegistrarseCommand { get; private set; }
+
+        private ActionCommand _RegistrarseCommand;
+
+        public ActionCommand RegistrarseCommand
+        {
+            get
+            {
+                if (_RegistrarseCommand == null)
+                {
+                    _RegistrarseCommand = new ActionCommand(Registrarse);
+                }
+                return _RegistrarseCommand;
+            }
+            set { _RegistrarseCommand = value; }
+        }
+
+
         private string _Nombre;
         public string Nombre
         {
             get => _Nombre;
-            set => SetProperty(ref _Nombre, value);
+            set
+            {
+                _Nombre = value;
+                OnPropertyChanged();
+            }
         }
         private string _Correo;
         public string Correo
         {
             get => _Correo;
-            set => SetProperty(ref _Correo, value);
+            set
+            {
+                _Correo = value;
+                OnPropertyChanged();
+            }
         }
         private string _Clave;
         public string Clave
         {
             get => _Clave;
-            set => SetProperty(ref _Clave, value);
+            set
+            {
+                _Clave = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

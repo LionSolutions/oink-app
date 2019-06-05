@@ -1,7 +1,6 @@
 ﻿using oinkapp.Data;
 using oinkapp.Interfaces;
 using oinkapp.Model;
-using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +19,6 @@ namespace oinkapp.ViewModels
 
             UpdateLista();
             Title = "Mi alcancía";
-
-            AgregarNuevoCommand = new DelegateCommand(AgregarNuevo);
         }
 
         void AgregarNuevo()
@@ -48,23 +45,49 @@ namespace oinkapp.ViewModels
         public IList<AhorroItem> ListaAhorros
         {
             get => _ListaAhorros;
-            set => SetProperty(ref _ListaAhorros, value);
+            set
+            {
+                _ListaAhorros = value;
+                OnPropertyChanged();
+            }
         }
 
         private decimal _AhorroTotal;
         public decimal AhorroTotal
         {
             get => _AhorroTotal;
-            set => SetProperty(ref _AhorroTotal, value);
+            set
+            {
+                _AhorroTotal = value;
+                OnPropertyChanged();
+            }
         }
         private decimal _CantidadAgregar;
         public decimal CantidadAgregar
         {
             get => _CantidadAgregar;
-            set => SetProperty(ref _CantidadAgregar, value);
+            set
+            {
+                _CantidadAgregar = value;
+                OnPropertyChanged();
+            }
         }
 
-        public DelegateCommand AgregarNuevoCommand { get; private set; }
+        private ActionCommand _AgregarNuevoCommand;
+
+        public ActionCommand AgregarNuevoCommand
+        {
+            get
+            {
+                if (_AgregarNuevoCommand == null)
+                {
+                    _AgregarNuevoCommand = new ActionCommand(AgregarNuevo);
+                }
+                return _AgregarNuevoCommand;
+            }
+            set { _AgregarNuevoCommand = value; }
+        }
+
 
         async void CheckAndFill()
         {
@@ -92,6 +115,5 @@ namespace oinkapp.ViewModels
                 await _ahorroDatabase.SaveItemAsync(ahorro3);
             }
         }
-
     }
 }

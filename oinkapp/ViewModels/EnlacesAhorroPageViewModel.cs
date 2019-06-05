@@ -1,14 +1,12 @@
-﻿using Prism.Commands;
-using System;
+﻿using System;
 using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
 {
-    public class EnlacesAhorroPageViewModel:ViewModelBase
+    public class EnlacesAhorroPageViewModel : ViewModelBase
     {
         public EnlacesAhorroPageViewModel()
         {
-            NavigateToUrlCommand = new DelegateCommand<string>(NavigateToUrl);
             Title = "Enlaces";
         }
 
@@ -17,6 +15,24 @@ namespace oinkapp.ViewModels
             Device.OpenUri(new Uri(uriString, UriKind.Absolute));
         }
 
-        public DelegateCommand<string> NavigateToUrlCommand { get; private set; }
+        private ActionCommandT<string> _NavigateToUrlCommand;
+
+        public ActionCommandT<string> NavigateToUrlCommand
+        {
+            get
+            {
+                if (_NavigateToUrlCommand == null)
+                {
+                    _NavigateToUrlCommand = new ActionCommandT<string>(NavigateToUrl);
+                }
+                return _NavigateToUrlCommand;
+            }
+            set
+            {
+                _NavigateToUrlCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }

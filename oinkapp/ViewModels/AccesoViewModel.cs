@@ -1,9 +1,7 @@
 ﻿using oinkapp.Data;
 using oinkapp.Interfaces;
-using Prism.Commands;
-using Prism.Navigation;
-using Prism.Services;
-using System;
+using oinkapp.Views;
+using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
 {
@@ -11,19 +9,14 @@ namespace oinkapp.ViewModels
     {
         UsuarioItemDataBase _usuarioItemDatabase;
         public IFileHelper _fileHelper;
-        INavigationService _navigationService;
-        IPageDialogService _pageDialogService;
+        INavigation _navigationService;
 
-        public AccesoViewModel(INavigationService navigationService, IPageDialogService pageDialog)
+        public AccesoViewModel(INavigation navigationService)
         {
             _navigationService = navigationService;
-            _fileHelper = Xamarin.Forms.DependencyService.Get<IFileHelper>();
-            _pageDialogService = pageDialog;
+            _fileHelper = DependencyService.Get<IFileHelper>();
 
             _usuarioItemDatabase = new UsuarioItemDataBase(_fileHelper.GetLocalFilePath("UsuarioSQLite.db3"));
-
-            NavegarARegistroCommand = new DelegateCommand(NavegarARegistro);
-            NavegarAMainCommand = new DelegateCommand(NavegarAMain);
 
             Title = "Acceso";
         }
@@ -31,28 +24,72 @@ namespace oinkapp.ViewModels
         async void NavegarAMain()
         {
             var value = await _usuarioItemDatabase.GetItemAsync(Usuario, Clave);
-            if (value != null)
-                await _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/ListaAhorro", UriKind.Absolute));
+            if (value == null)
+                await _navigationService.PushAsync(new BurgerMenuPage());
             else
-                await _pageDialogService.DisplayAlertAsync("Acceso", "Credenciales incorrectas, revise", "Ok");
+                await App.Current.MainPage.DisplayAlert("Acceso", "Credenciales incorrectas, revise", "Ok");
         }
 
-        private void NavegarARegistro() => _navigationService.NavigateAsync("Registro");
+        private void NavegarARegistro() => _navigationService.PushAsync(new RegistroView());
 
-        public DelegateCommand NavegarARegistroCommand { get; private set; }
-        public DelegateCommand NavegarAMainCommand { get; private set; }
+        private ActionCommand _NavegarARegistroCommand;
+
+        public ActionCommand NavegarARegistroCommand
+        {
+            get
+            {
+                if (_NavegarARegistroCommand == null)
+                {
+                    _NavegarARegistroCommand = new ActionCommand(NavegarARegistro);
+                }
+                return _NavegarARegistroCommand;
+            }
+            set
+            {
+                _NavegarARegistroCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ActionCommand _NavegarAMainCommand;
+
+        public ActionCommand NavegarAMainCommand
+        {
+            get
+            {
+                if (_NavegarAMainCommand == null)
+                {
+                    _NavegarAMainCommand = new ActionCommand(NavegarAMain);
+                }
+                return _NavegarAMainCommand;
+            }
+            set
+            {
+                _NavegarAMainCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private string _Usuario;
         public string Usuario
         {
             get => _Usuario;
-            set => SetProperty(ref _Usuario, value);
+            set
+            {
+                _Usuario = value;
+                OnPropertyChanged();
+            }
         }
         private string _Clave;
         public string Clave
         {
             get => _Clave;
-            set => SetProperty(ref _Clave, value);
+            set
+            {
+                _Clave = value;
+                OnPropertyChanged();
+            }
         }
     }
 }
