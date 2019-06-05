@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using oinkapp.ViewModels;
+using Xamarin.Forms;
 
 namespace oinkapp.Views
 {
@@ -7,6 +8,12 @@ namespace oinkapp.Views
         public MisComprasPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = new MisComprasViewModel(Navigation);
         }
     }
 }

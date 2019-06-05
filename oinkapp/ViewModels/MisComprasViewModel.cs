@@ -216,11 +216,11 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
-        void UpdateList()
+        async void UpdateList()
         {
             IsBusy = true;
-            var lista = _deseoItemDatabase.GetItemsAsync();
-            ListaCompras = lista.Result;
+            var lista = await _deseoItemDatabase.GetItemsAsync();
+            ListaCompras = lista;
             IsBusy = false;
         }
     }
