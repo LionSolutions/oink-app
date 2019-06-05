@@ -1,7 +1,6 @@
 ﻿using oinkapp.Data;
 using oinkapp.Interfaces;
 using oinkapp.Model;
-using oinkapp.Views;
 using System;
 using Xamarin.Forms;
 
@@ -28,6 +27,8 @@ namespace oinkapp.ViewModels
 
         #endregion Constructor
 
+        #region Properties
+
         private void Initialize()
         {
             //_navigationService = navigationService;
@@ -44,7 +45,10 @@ namespace oinkapp.ViewModels
             DeseoCreado.FechaRegistro = DateTime.Now;
             _ = await _deseoItemDatabase.SaveItemAsync(DeseoCreado);
 
-            await _navigationService.PopModalAsync();        }
+            await _navigationService.PopModalAsync();
+        }
+
+        #endregion Properties
 
         #region Properties
 

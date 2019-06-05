@@ -9,10 +9,15 @@ namespace oinkapp.ViewModels
 {
     public class RegistroViewModel : ViewModelBase
     {
+        #region Variables
+
         UsuarioItemDataBase _usuarioItemDatabase;
         public IFileHelper _fileHelper;
         INavigation _navigationService;
-        //IPageDialogService _pageDialogService;
+
+        #endregion Variables
+
+        #region Constructor
 
         public RegistroViewModel(INavigation navigationService)
         {
@@ -22,6 +27,10 @@ namespace oinkapp.ViewModels
 
             Title = "Registro";
         }
+
+        #endregion Constructor
+
+        #region Methods
 
         async void Registrarse()
         {
@@ -43,6 +52,9 @@ namespace oinkapp.ViewModels
             }
         }
 
+        #endregion Methods
+
+        #region Properties
 
         private ActionCommand _RegistrarseCommand;
 
@@ -59,7 +71,6 @@ namespace oinkapp.ViewModels
             set { _RegistrarseCommand = value; }
         }
 
-
         private string _Nombre;
         public string Nombre
         {
@@ -70,6 +81,7 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private string _Correo;
         public string Correo
         {
@@ -80,6 +92,7 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private string _Clave;
         public string Clave
         {
@@ -90,5 +103,7 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion Properties
     }
 }

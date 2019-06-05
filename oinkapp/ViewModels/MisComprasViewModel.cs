@@ -11,11 +11,17 @@ namespace oinkapp.ViewModels
 {
     public class MisComprasViewModel : ViewModelBase
     {
+        #region Variables
+
         public DeseoItemDatabase _deseoItemDatabase;
         public AhorroItemDatabase _ahorroItemDatabase;
-
         public IFileHelper _fileHelper;
         INavigation _navigationService;
+
+        #endregion Variables
+
+        #region Constructor
+
         public MisComprasViewModel(INavigation navigationService)
         {
             _navigationService = navigationService;
@@ -30,6 +36,10 @@ namespace oinkapp.ViewModels
             Title = "Mis Compras";
         }
 
+        #endregion Constructor
+
+        #region Methods
+
         async void AgregarCantidad()
         {
             AhorroItem ahorro = new AhorroItem();
@@ -41,10 +51,55 @@ namespace oinkapp.ViewModels
             SetearAhorro();
         }
 
-        async void AgregarCompra()
+        async void CheckAndFill()
         {
-            await _navigationService.PushModalAsync(new AgregarCompraPage());
+            var elements = await _deseoItemDatabase.GetItemsAsync();
+            if (!elements.Any())
+            {
+                DeseoItem deseo = new DeseoItem();
+                deseo.Descripcion = "XBOX";
+                deseo.FechaRegistro = DateTime.Now;
+                deseo.FechaMeta = DateTime.Now;
+                deseo.Precio = 4500;
+                await _deseoItemDatabase.SaveItemAsync(deseo);
+
+                DeseoItem deseo1 = new DeseoItem();
+                deseo1.Descripcion = "MINI DRON";
+                deseo1.FechaRegistro = DateTime.Now;
+                deseo1.FechaMeta = DateTime.Now;
+                deseo1.Precio = 725;
+                await _deseoItemDatabase.SaveItemAsync(deseo1);
+            }
         }
+
+        async void UpdateList()
+        {
+            IsBusy = true;
+            var lista = await _deseoItemDatabase.GetItemsAsync();
+            ListaCompras = lista;
+            IsBusy = false;
+        }
+
+        async void SetearAhorro()
+        {
+            if (_DeseoSelected != null)
+            {
+                IsVisible = true;
+                var lista = await _ahorroItemDatabase.GetItemsAsync(DeseoSelected.Descripcion);
+                AhorroSelected = new List<AhorroItem>(lista);
+                var tA = lista.Sum(o => o.Cantidad);
+                TotalAhorrado = tA;
+                TotalFalta = DeseoSelected.Precio - TotalAhorrado;
+            }
+            else
+            {
+                IsVisible = false;
+            }
+        }
+
+        #endregion Methods
+
+        #region Properties
 
         private ActionCommand _AgregarCompraCommand;
 
@@ -54,7 +109,9 @@ namespace oinkapp.ViewModels
             {
                 if (_AgregarCompraCommand == null)
                 {
-                    _AgregarCompraCommand = new ActionCommand(AgregarCompra);
+                    _AgregarCompraCommand = new ActionCommand(
+                        async () => await _navigationService.PushModalAsync(new AgregarCompraPage())
+                        );
                 }
                 return _AgregarCompraCommand;
             }
@@ -99,26 +156,6 @@ namespace oinkapp.ViewModels
             set { _AgregarCantidadCommand = value; }
         }
 
-        async void CheckAndFill()
-        {
-            var elements = await _deseoItemDatabase.GetItemsAsync();
-            if (!elements.Any())
-            {
-                DeseoItem deseo = new DeseoItem();
-                deseo.Descripcion = "XBOX";
-                deseo.FechaRegistro = DateTime.Now;
-                deseo.FechaMeta = DateTime.Now;
-                deseo.Precio = 4500;
-                await _deseoItemDatabase.SaveItemAsync(deseo);
-
-                DeseoItem deseo1 = new DeseoItem();
-                deseo1.Descripcion = "MINI DRON";
-                deseo1.FechaRegistro = DateTime.Now;
-                deseo1.FechaMeta = DateTime.Now;
-                deseo1.Precio = 725;
-                await _deseoItemDatabase.SaveItemAsync(deseo1);
-            }
-        }
 
         private DeseoItem _DeseoSelected;
         public DeseoItem DeseoSelected
@@ -135,22 +172,6 @@ namespace oinkapp.ViewModels
             }
         }
 
-        async void SetearAhorro()
-        {
-            if (_DeseoSelected != null)
-            {
-                IsVisible = true;
-                var lista = await _ahorroItemDatabase.GetItemsAsync(DeseoSelected.Descripcion);
-                AhorroSelected = new List<AhorroItem>(lista);
-                var tA = lista.Sum(o => o.Cantidad);
-                TotalAhorrado = tA;
-                TotalFalta = DeseoSelected.Precio - TotalAhorrado;
-            }
-            else
-            {
-                IsVisible = false;
-            }
-        }
 
         private decimal _TotalAhorrado;
         public decimal TotalAhorrado
@@ -162,6 +183,7 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private decimal _TotalFalta;
         public decimal TotalFalta
         {
@@ -216,12 +238,7 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
-        async void UpdateList()
-        {
-            IsBusy = true;
-            var lista = await _deseoItemDatabase.GetItemsAsync();
-            ListaCompras = lista;
-            IsBusy = false;
-        }
+
+        #endregion Properties
     }
 }

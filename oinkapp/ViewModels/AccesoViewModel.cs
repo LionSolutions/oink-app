@@ -7,9 +7,15 @@ namespace oinkapp.ViewModels
 {
     public class AccesoViewModel : ViewModelBase
     {
+        #region Variables
+
         UsuarioItemDataBase _usuarioItemDatabase;
         public IFileHelper _fileHelper;
         INavigation _navigationService;
+
+        #endregion Variables
+
+        #region Constructor
 
         public AccesoViewModel(INavigation navigationService)
         {
@@ -21,6 +27,10 @@ namespace oinkapp.ViewModels
             Title = "Acceso";
         }
 
+        #endregion Constructor
+
+        #region Constructor
+
         async void NavegarAMain()
         {
             var value = await _usuarioItemDatabase.GetItemAsync(Usuario, Clave);
@@ -30,7 +40,9 @@ namespace oinkapp.ViewModels
                 await App.Current.MainPage.DisplayAlert("Acceso", "Credenciales incorrectas, revise", "Ok");
         }
 
-        private void NavegarARegistro() => _navigationService.PushAsync(new RegistroView());
+        #endregion Constructor
+
+        #region Properties
 
         private ActionCommand _NavegarARegistroCommand;
 
@@ -40,7 +52,7 @@ namespace oinkapp.ViewModels
             {
                 if (_NavegarARegistroCommand == null)
                 {
-                    _NavegarARegistroCommand = new ActionCommand(NavegarARegistro);
+                    _NavegarARegistroCommand = new ActionCommand(() => _navigationService.PushAsync(new RegistroView());
                 }
                 return _NavegarARegistroCommand;
             }
@@ -81,6 +93,7 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private string _Clave;
         public string Clave
         {
@@ -91,5 +104,7 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion Properties
     }
 }

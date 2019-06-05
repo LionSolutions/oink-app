@@ -2,9 +2,8 @@
 {
     public class ViewModelBase : NotificationEnabledObject
     {
-        public ViewModelBase()
-        {
-        }
+        #region Properties
+
         private string _Title;
         public string Title
         {
@@ -25,5 +24,7 @@
                 OnPropertyChanged();
             }
         }
+
+        #endregion Properties
     }
 }

@@ -33,6 +33,5 @@ namespace oinkapp.ViewModels
                 OnPropertyChanged();
             }
         }
-
     }
 }
