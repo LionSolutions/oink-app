@@ -44,9 +44,7 @@ namespace oinkapp.ViewModels
             DeseoCreado.FechaRegistro = DateTime.Now;
             _ = await _deseoItemDatabase.SaveItemAsync(DeseoCreado);
 
-            await _navigationService.PushAsync(new BurgerMenuPage());
-            //await _navigationService.NavigateAsync(new Uri("/MasterDetail/NavigationPage/MisCompras", UriKind.Absolute));
-        }
+            await _navigationService.PopModalAsync();        }
 
         #region Properties
 

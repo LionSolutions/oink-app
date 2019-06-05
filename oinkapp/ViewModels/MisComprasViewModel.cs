@@ -43,7 +43,7 @@ namespace oinkapp.ViewModels
 
         async void AgregarCompra()
         {
-            await _navigationService.PushAsync(new AgregarCompraPage());
+            await _navigationService.PushModalAsync(new AgregarCompraPage());
         }
 
         private ActionCommand _AgregarCompraCommand;
