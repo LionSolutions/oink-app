@@ -12,7 +12,7 @@ namespace oinkapp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new ListaAhorroPageViewModel();
+            BindingContext = new ListaAhorroPageViewModel(Navigation);
         }
     }
 }

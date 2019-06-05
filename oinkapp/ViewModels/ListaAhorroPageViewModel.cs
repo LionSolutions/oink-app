@@ -14,23 +14,32 @@ namespace oinkapp.ViewModels
 
         public AhorroItemDatabase _ahorroDatabase;
         public IFileHelper _fileHelper;
+        INavigation navigationService;
 
         #endregion Variables
 
         #region Constructor
 
-        public ListaAhorroPageViewModel()
+        public ListaAhorroPageViewModel(INavigation _navigationService)
+        {
+            navigationService = _navigationService;
+            Inicialize();
+        }
+
+        #endregion Constructor
+
+        #region Methods
+
+        private void Inicialize()
         {
             _fileHelper = DependencyService.Get<IFileHelper>();
             _ahorroDatabase = new AhorroItemDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
 
             UpdateLista();
             Title = "Mi alcancía";
+
+            CheckAndFill();
         }
-
-        #endregion Constructor
-
-        #region Methods
 
         async void AgregarNuevo()
         {
@@ -57,26 +66,40 @@ namespace oinkapp.ViewModels
             var elements = await _ahorroDatabase.GetItemsAsync();
             if (!elements.Any())
             {
-                AhorroItem ahorro = new AhorroItem();
-                ahorro.Cantidad = 100;
-                ahorro.FechaDeposito = new DateTime(2018, 01, 02);
-                await _ahorroDatabase.SaveItemAsync(ahorro);
+                await _ahorroDatabase.SaveItemAsync(new AhorroItem
+                {
+                    Cantidad = 100,
+                    FechaDeposito = new DateTime(2018, 01, 02),
+                    NombreCompra = "Ahorro 1"
+                });
 
-                AhorroItem ahorro1 = new AhorroItem();
-                ahorro1.Cantidad = 50;
-                ahorro1.FechaDeposito = new DateTime(2018, 01, 10);
-                await _ahorroDatabase.SaveItemAsync(ahorro1);
+                await _ahorroDatabase.SaveItemAsync(new AhorroItem
+                {
+                    Cantidad = 50,
+                    FechaDeposito = new DateTime(2018, 01, 10),
+                    NombreCompra = "Ahorro 2"
+                });
 
-                AhorroItem ahorro2 = new AhorroItem();
-                ahorro2.Cantidad = 85;
-                ahorro2.FechaDeposito = new DateTime(2018, 01, 23);
-                await _ahorroDatabase.SaveItemAsync(ahorro2);
+                await _ahorroDatabase.SaveItemAsync(new AhorroItem
+                {
+                    Cantidad = 85,
+                    FechaDeposito = new DateTime(2018, 01, 23),
+                    NombreCompra = "Ahorro 3"
+                });
 
-                AhorroItem ahorro3 = new AhorroItem();
-                ahorro3.Cantidad = 115;
-                ahorro3.FechaDeposito = new DateTime(2018, 02, 07);
-                await _ahorroDatabase.SaveItemAsync(ahorro3);
+                await _ahorroDatabase.SaveItemAsync(new AhorroItem
+                {
+                    Cantidad = 115,
+                    FechaDeposito = new DateTime(2018, 02, 07),
+                    NombreCompra = "Ahorro 4"
+                });
             }
+        }
+
+        private void OpenNewAhorro()
+        {
+            //todo: Create a new page for add new value
+            //navigationService.PopAsync()
         }
 
         #endregion Methods
@@ -128,6 +151,25 @@ namespace oinkapp.ViewModels
                 return _AgregarNuevoCommand;
             }
             set { _AgregarNuevoCommand = value; }
+        }
+
+        private ActionCommand _OpenNewAhorroCommand;
+
+        public ActionCommand OpenNewAhorroCommand
+        {
+            get
+            {
+                if (_OpenNewAhorroCommand == null)
+                {
+                    _OpenNewAhorroCommand = new ActionCommand(OpenNewAhorro);
+                }
+                return _OpenNewAhorroCommand;
+            }
+            set
+            {
+                _OpenNewAhorroCommand = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion Properties

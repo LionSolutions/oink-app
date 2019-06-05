@@ -52,7 +52,7 @@ namespace oinkapp.ViewModels
             {
                 if (_NavegarARegistroCommand == null)
                 {
-                    _NavegarARegistroCommand = new ActionCommand(() => _navigationService.PushAsync(new RegistroView());
+                    _NavegarARegistroCommand = new ActionCommand(() => _navigationService.PushAsync(new RegistroView()));
                 }
                 return _NavegarARegistroCommand;
             }
