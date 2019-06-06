@@ -3,16 +3,17 @@ using Xamarin.Forms;
 
 namespace oinkapp.Views
 {
-    public partial class ListaAhorroPage : ContentPage
+    public partial class SavingsPage : ContentPage
     {
-        public ListaAhorroPage()
+        public SavingsPage()
         {
             InitializeComponent();
+            BindingContext = new SavingsPageViewModel(Navigation);
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new ListaAhorroPageViewModel(Navigation);
         }
     }
 }

@@ -159,6 +159,21 @@
       <Version>0.21.8</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Assets\icon_app.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Assets\icon_main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Assets\monedas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Assets\compras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Assets\piggybank.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\oinkapp\oinkapp.projitems" Label="Shared" />
 </Project>

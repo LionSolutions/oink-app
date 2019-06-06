@@ -1,25 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:view="clr-namespace:oinkapp.Views"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="oinkapp.Views.BurgerMenuPage">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:view="clr-namespace:oinkapp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    x:Class="oinkapp.Views.BurgerMenuPage">
     <FlyoutItem Title="Mi alcancía">
         <ShellContent>
-            <view:ListaAhorroPage/>
+            <view:SavingsPage />
         </ShellContent>
     </FlyoutItem>
     <FlyoutItem Title="Mis Compras">
         <ShellContent>
-            <view:MisComprasPage/>
+            <view:MisComprasPage />
         </ShellContent>
     </FlyoutItem>
     <FlyoutItem Title="Donde comprar">
         <ShellContent>
-            <view:EnlacesAhorroPage/>
+            <view:EnlacesAhorroPage />
         </ShellContent>
     </FlyoutItem>
 </Shell>

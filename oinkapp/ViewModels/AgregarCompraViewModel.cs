@@ -10,8 +10,8 @@ namespace oinkapp.ViewModels
     {
         #region Variables
 
-        DeseoItemDatabase _deseoItemDatabase;
-        AhorroItemDatabase _ahorroItemDatabase;
+        TargetDatabase _TargetDatabase;
+        SavingDatabase _ahorroItemDatabase;
         public IFileHelper _fileHelper;
         INavigation _navigationService;
 
@@ -27,28 +27,28 @@ namespace oinkapp.ViewModels
 
         #endregion Constructor
 
-        #region Properties
+        #region Methods
 
         private void Initialize()
         {
             //_navigationService = navigationService;
             _fileHelper = DependencyService.Get<IFileHelper>();
 
-            _deseoItemDatabase = new DeseoItemDatabase(_fileHelper.GetLocalFilePath("DeseoSQLite.db3"));
-            _ahorroItemDatabase = new AhorroItemDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
+            _TargetDatabase = new TargetDatabase(_fileHelper.GetLocalFilePath("DeseoSQLite.db3"));
+            _ahorroItemDatabase = new SavingDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
 
             Title = "Agregar compra";
         }
 
         async void GuardarDeseo()
         {
-            DeseoCreado.FechaRegistro = DateTime.Now;
-            _ = await _deseoItemDatabase.SaveItemAsync(DeseoCreado);
+            //DeseoCreado.FechaRegistro = DateTime.Now;
+            _ = await _TargetDatabase.SaveItemAsync(DeseoCreado);
 
             await _navigationService.PopModalAsync();
         }
 
-        #endregion Properties
+        #endregion Methods
 
         #region Properties
 
@@ -68,10 +68,10 @@ namespace oinkapp.ViewModels
             set { _GuardarDeseoCommand = value; }
         }
 
-        private DeseoItem _DeseoCreado;
-        public DeseoItem DeseoCreado
+        private Target _DeseoCreado;
+        public Target DeseoCreado
         {
-            get => _DeseoCreado ?? new DeseoItem();
+            get => _DeseoCreado ?? new Target();
             set
             {
                 _DeseoCreado = value;

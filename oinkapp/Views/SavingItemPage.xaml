@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:converter="clr-namespace:oinkapp.Converters"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="oinkapp.Views.SavingItemPage"
+             BackgroundColor="#CCE8CC"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:TextIsEmptyConverter x:Key="textIsEmptyConverter" />
+            <converter:NumberIsZeroConverter x:Key="numberIsZeroConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Source="Assets/piggybank"
+               WidthRequest="150" />
+        <yummy:PancakeView Grid.Row="1"
+                           CornerRadius="10"
+                           HasShadow="False"
+                           Padding="20"
+                           BackgroundColor="White"
+                           VerticalOptions="Start"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="20,0">
+            <StackLayout>
+                <Label Text="Descripción" />
+                <Entry x:Name="entryDescription"
+                       Placeholder="Descripción"
+                       Text="{Binding Saving.Description, Mode=TwoWay}"
+                       />
+                <Label Text="Cantidad" />
+                <Entry x:Name="entryQuantity"
+                       Placeholder="Cantidad"
+                       Text="{Binding Saving.Quantity,Mode=TwoWay}"
+                       Keyboard="Numeric" />
+                <Button Text="Guardar"
+                        BackgroundColor="DodgerBlue"
+                        TextColor="White"
+                        Margin="0,10,0,0"
+                        Command="{Binding SaveSavingCommand}">
+                    <Button.Triggers>
+                        <MultiTrigger TargetType="Button">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition Binding="{Binding Source={x:Reference entryDescription},Path=Text,Converter={StaticResource textIsEmptyConverter}}"
+                                                  Value="True" />
+                                <BindingCondition Binding="{Binding Source={x:Reference entryQuantity},Path=Text, Converter={StaticResource numberIsZeroConverter}}"
+                                                  Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Text"
+                                    Value="Cancelar" />
+                            <Setter Property="BackgroundColor"
+                                    Value="#E0777D" /> 
+                        </MultiTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </yummy:PancakeView>
+    </Grid>
+</ContentPage>

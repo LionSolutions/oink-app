@@ -13,7 +13,7 @@ namespace oinkapp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new MisComprasViewModel(Navigation);
+            //BindingContext = new MisComprasViewModel(Navigation);
         }
     }
 }

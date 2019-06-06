@@ -22,10 +22,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ListaAhorroPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\EnlacesAhorroPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -38,19 +34,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SavingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TargetsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FriendlyDateConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NumberIsZeroConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TextIsEmptyConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Triggers\ChangeColorButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ActionCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NotificationEnabledObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SavingItemPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AccesoView.xaml.cs">
       <DependentUpon>AccesoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccesoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SplashViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\BurgerMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SavingItemPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SplashView.xaml.cs">
@@ -61,20 +73,15 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegistroViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ListaAhorroPage.xaml.cs">
-      <DependentUpon>ListaAhorroPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ListaAhorroPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MisComprasViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SavingsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TargetsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\EnlacesAhorroPage.xaml.cs">
       <DependentUpon>EnlacesAhorroPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EnlacesAhorroPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\AhorroItemDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\AhorroItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\DeseoItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\DeseoItemDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SavingDataBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\TargetDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MisComprasPage.xaml.cs">
       <DependentUpon>MisComprasPage.xaml</DependentUpon>
     </Compile>
@@ -84,11 +91,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AgregarCompraViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Usuario.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\UsuarioItemDataBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Saving.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Target.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SavingsPage.xaml.cs">
+      <DependentUpon>SavingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TargetsPage.xaml.cs">
+      <DependentUpon>TargetsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\KeysHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)icon_app.png" />
@@ -106,5 +123,17 @@
     <Compile Update="C:\repos\oink-app\oinkapp\Views\BurgerMenuPage.xaml.cs">
       <DependentUpon>BurgerMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="C:\repos\oink-app\oinkapp\Views\SavingItem.xaml.cs">
+      <DependentUpon>SavingItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="C:\repos\oink-app\oinkapp\Views\SavingItemPage.xaml.cs">
+      <DependentUpon>SavingItemPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SavingItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
