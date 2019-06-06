@@ -1,4 +1,3 @@
-using oinkapp.ViewModels;
 using oinkapp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

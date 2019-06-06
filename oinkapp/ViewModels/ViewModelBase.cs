@@ -1,7 +1,15 @@
-﻿namespace oinkapp.ViewModels
+﻿using Xamarin.Forms;
+
+namespace oinkapp.ViewModels
 {
     public class ViewModelBase : NotificationEnabledObject
     {
+        #region Variables
+
+        public INavigation navigationService;
+
+        #endregion Variables
+
         #region Properties
 
         private string _Title;
