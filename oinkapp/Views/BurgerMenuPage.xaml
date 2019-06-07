@@ -5,7 +5,7 @@
     x:Class="oinkapp.Views.BurgerMenuPage">
     <FlyoutItem Title="Mi alcancía">
         <ShellContent>
-            <view:SavingsPage />
+            <view:TargetsPage />
         </ShellContent>
     </FlyoutItem>
     <FlyoutItem Title="Mis Compras">

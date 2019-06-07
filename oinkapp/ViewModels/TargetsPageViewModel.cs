@@ -66,26 +66,6 @@ namespace oinkapp.ViewModels
             }
         }
 
-        //private ActionCommand _UpdateCompraCommand;
-
-        //public ActionCommand UpdateCompraCommand
-        //{
-        //    get
-        //    {
-        //        if (_UpdateCompraCommand == null)
-        //        {
-        //            _UpdateCompraCommand = new ActionCommand(UpdateList);
-        //        }
-        //        return _UpdateCompraCommand;
-        //    }
-        //    set
-        //    {
-        //        _UpdateCompraCommand = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
         private decimal _TargetTotal;
         public decimal TargetTotal
         {

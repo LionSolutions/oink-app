@@ -1,83 +1,235 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="oinkapp.Views.TargetsPage" Title="{Binding Title}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Agregar" Command="{Binding AgregarCompraCommand}" />
-    </ContentPage.ToolbarItems>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:model="clr-namespace:oinkapp.Model"
+             x:Class="oinkapp.Views.TargetsPage"
+             BackgroundColor="#D3D3D3"
+             Title="{Binding Title}">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <DataTemplate x:Key="templateAhorro">
-                <ViewCell>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Path=Cantidad,StringFormat='{0:C}'}" Grid.Column="0" />
-                        <Label Text="{Binding Path=FechaDeposito,StringFormat='{}{0:dd/MMMM/yyyy}'}" Grid.Column="1" />
-                    </Grid>
-                </ViewCell>
+            <x:Array Type="{x:Type model:Target}"
+                     x:Key="listOfBudget">
+                <model:Target Budget="200"
+                              Description="Xbox" />
+                <model:Target Budget="500"
+                              Description="Play Station" />
+                <model:Target Budget="20"
+                              Description="Scooter" />
+                <model:Target Budget="4400"
+                              Description="Zapatos" />
+                <model:Target Budget="200"
+                              Description="Xbox" />
+                <model:Target Budget="500"
+                              Description="Play Station" />
+                <model:Target Budget="20"
+                              Description="Scooter" />
+                <model:Target Budget="4400"
+                              Description="Zapatos" />
+            </x:Array>
+            <DataTemplate x:Key="templateBudget">
+                <ContentView>
+                    <yummy:PancakeView CornerRadius="10"
+                                       HasShadow="False"
+                                       BackgroundColor="White"
+                                       Padding="10"
+                                       VerticalOptions="Center"
+                                       Margin="5"
+                                       x:Name="pancake"
+                                       WidthRequest="100">
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Budget,StringFormat='{}{0:c}'}"
+                                   FontSize="Medium"
+                                   FontAttributes="Bold"
+                                   TextColor="#3c3c3c"/>
+                            <Label Text="{Binding Description}"
+                                   FontSize="Micro"
+                                   TextColor="#3c3c3c" />
+                        </StackLayout>
+                    </yummy:PancakeView>
+                </ContentView>
             </DataTemplate>
-            <DataTemplate x:Key="templateCompra">
-                <ViewCell>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Descripcion}" Grid.Row="0"
-                            Grid.ColumnSpan="3" FontSize="20"
-                            FontAttributes="Bold" HorizontalOptions="FillAndExpand"
-                            HorizontalTextAlignment="Center" BackgroundColor="Fuchsia" />
-                        <Label Text="Precio" FontAttributes="Bold"
-                            Grid.Row="1" Grid.Column="0" />
-                        <Label Text="Empecé" FontAttributes="Bold"
-                            Grid.Row="1" Grid.Column="1" />
-                        <Label Text="Compré" FontAttributes="Bold"
-                            Grid.Row="1" Grid.Column="2" />
-                        <Label Text="{Binding Path= Precio,StringFormat='{0:C}'}" Grid.Row="2"
-                            Grid.Column="0" />
-                        <Label Text="{Binding Path=FechaRegistro,StringFormat='{}{0:dd/MMMM/yyyy}'}" Grid.Row="2"
-                            Grid.Column="1" />
-                        <Label Text="{Binding Path=FechaMeta,StringFormat='{}{0:dd/MMMM/yyyy}'}" Grid.Row="2"
-                            Grid.Column="2" />
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
+            <GridItemsLayout Orientation="Horizontal"
+                             x:Key="itemLayoutBudget" />
+
+            <Style TargetType="Label"
+                   x:Key="PrimaryCurrency">
+                <Setter Property="FontSize"
+                        Value="Large" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="TextColor"
+                        Value="White" />
+            </Style>
+
+            <Style TargetType="Label"
+                   x:Key="Title">
+                <Setter Property="FontSize"
+                        Value="Micro" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="TextColor"
+                        Value="White" />
+                <Setter Property="VerticalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style TargetType="Label"
+                   x:Key="SubTitle">
+                <Setter Property="FontSize"
+                        Value="Micro" />
+                <Setter Property="TextColor"
+                        Value="White" />
+            </Style>
+
+            <Thickness x:Key="thicknessPadding">
+                <Thickness.Left>20</Thickness.Left>
+                <Thickness.Right>20</Thickness.Right>
+                <Thickness.Bottom>10</Thickness.Bottom>
+                <Thickness.Top>10</Thickness.Top>
+            </Thickness>
+
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Agregar"
+                     Command="{Binding AgregarCompraCommand}" />
+    </ContentPage.ToolbarItems>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout Grid.Row="0" IsVisible="{Binding IsVisible}">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Tengo:" />
-                <Label Text="{Binding TotalAhorrado}" FontAttributes="Bold"
-                    FontSize="20" />
+
+        <!--Module for Balance-->
+        <yummy:PancakeView CornerRadius="10"
+                           HasShadow="False"
+                           Padding="20"
+                           Margin="20,10,20,0"
+                           BackgroundColor="White"
+                           VerticalOptions="Center"
+                           HorizontalOptions="FillAndExpand"
+                           HeightRequest="100"
+                           Grid.Row="0">
+            <StackLayout HorizontalOptions="Center">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="Assets/growth"
+                           HeightRequest="15" />
+                    <Label Text="Balance"
+                           Style="{StaticResource Title}"
+                           TextColor="#B74F6F"
+                           HorizontalTextAlignment="Start" />
+                </StackLayout>
+                <Label Text="-$3,456.00"
+                       Style="{StaticResource PrimaryCurrency}"
+                       FontSize="50"
+                       TextColor="#B74F6F"
+                       HorizontalTextAlignment="Start" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Faltan:" />
-                <Label Text="{Binding TotalFalta}" FontAttributes="Bold"
-                    FontSize="20" />
-            </StackLayout>
-            <Label Text="AHORROS" FontAttributes="Bold" />
-            <ListView ItemsSource="{Binding AhorroSelected}" ItemTemplate="{StaticResource templateAhorro}" />
-            <Entry Text="{Binding CantidadAAgregar}" />
-            <Button Text="Agregar" Command="{Binding AgregarCantidadCommand}" />
-        </StackLayout>
-        <ListView Grid.Row="1" ItemsSource="{Binding ListaCompras}"
-            SelectedItem="{Binding DeseoSelected}" ItemTemplate="{StaticResource templateCompra}"
-            HasUnevenRows="true" CachingStrategy="RecycleElement"
-            SeparatorVisibility="Default" SeparatorColor="Fuchsia"
-            RefreshAllowed="true" RefreshCommand="{Binding UpdateCompraCommand}"
-            IsRefreshing="{Binding IsBusy}" IsPullToRefreshEnabled="true" />
+        </yummy:PancakeView>
+        
+        <!--Module for budgets-->
+        <yummy:PancakeView CornerRadius="10,0,10,0"
+                           HasShadow="False"
+                           Padding="{StaticResource thicknessPadding}"
+                           Margin="80,0,0,0"
+                           BackgroundColor="#4B3F72"
+                           VerticalOptions="Center"
+                           HorizontalOptions="FillAndExpand"
+                           HeightRequest="80"
+                           Grid.Row="1">
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout HorizontalOptions="StartAndExpand"
+                             Grid.Column="0">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Assets/coins"
+                               HeightRequest="15" />
+                        <Label Text="Presupuesto total"
+                               Style="{StaticResource Title}" />
+                    </StackLayout>
+                    <Label Text="$3,456.00"
+                           Style="{StaticResource PrimaryCurrency}"
+                           HorizontalTextAlignment="Start" />
+                    <Label Text="12 items total"
+                           Style="{StaticResource SubTitle}"
+                           HorizontalTextAlignment="Start" />
+                </StackLayout>
+                <Image Source="Assets/budgets"
+                       Grid.Column="1"
+                       WidthRequest="50"
+                       HeightRequest="50" 
+                       HorizontalOptions="End"/>
+            </Grid>
+        </yummy:PancakeView>
+
+        <!--Module for savings-->
+        <yummy:PancakeView CornerRadius="0,10,0,10"
+                           HasShadow="False"
+                           Padding="{StaticResource thicknessPadding}"
+                           Margin="0,0,80,0"
+                           BackgroundColor="#3185FC"
+                           VerticalOptions="Center"
+                           HorizontalOptions="FillAndExpand"
+                           HeightRequest="80"
+                           Grid.Row="2">
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Source="Assets/savings"
+                       Grid.Column="0"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       HorizontalOptions="Start"/>
+                <StackLayout Grid.Column="1">
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="EndAndExpand">
+                        <Image Source="Assets/coins"
+                               HeightRequest="15" />
+                        <Label Text="Ahorro total"
+                               Style="{StaticResource Title}" />
+                    </StackLayout>
+                    <Label Text="$267.54"
+                           Style="{StaticResource PrimaryCurrency}"
+                           HorizontalTextAlignment="End" />
+                    <Label Text="4 items total"
+                           Style="{StaticResource SubTitle}"
+                           HorizontalTextAlignment="End" />
+
+                </StackLayout>
+            </Grid>
+        </yummy:PancakeView>
+
+        <!--Module for list of savings-->
+        <Grid Grid.Row="3">
+            <yummy:PancakeView CornerRadius="10,10,0,0"
+                               HasShadow="False"
+                               Padding="20"
+                               BackgroundColor="#8075FF"
+                               VerticalOptions="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Text="Lista de deseos"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           Grid.Row="0" />
+                    <CollectionView Grid.Row="1"
+                                    ItemsSource="{StaticResource listOfBudget}"
+                                    ItemTemplate="{StaticResource templateBudget}"
+                                    ItemsLayout="{StaticResource itemLayoutBudget}" />
+                </Grid>
+            </yummy:PancakeView>
+        </Grid>
     </Grid>
 </ContentPage>
