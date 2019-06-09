@@ -161,6 +161,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Assets\icon_app.png" />
+    <BundleResource Include="Assets\background0.jpeg" />
+    <BundleResource Include="Assets\background1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Assets\icon_main.png" />

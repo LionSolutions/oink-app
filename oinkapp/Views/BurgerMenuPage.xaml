@@ -3,9 +3,14 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:view="clr-namespace:oinkapp.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     x:Class="oinkapp.Views.BurgerMenuPage">
-    <FlyoutItem Title="Mi alcancía">
+    <FlyoutItem Title="Tablero">
         <ShellContent>
             <view:TargetsPage />
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="Mi alcancía">
+        <ShellContent>
+            <view:SavingsPage />
         </ShellContent>
     </FlyoutItem>
     <FlyoutItem Title="Mis Compras">
