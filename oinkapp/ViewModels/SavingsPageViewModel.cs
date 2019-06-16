@@ -1,11 +1,9 @@
-﻿using oinkapp.Data;
-using oinkapp.Helpers;
-using oinkapp.Interfaces;
-using oinkapp.Model;
-using oinkapp.Views;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using oinkapp.Data;
+using oinkapp.Model;
+using oinkapp.Views;
 using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
@@ -15,7 +13,6 @@ namespace oinkapp.ViewModels
         #region Variables
 
         private SavingDatabase savingDatabase;
-        private IFileHelper fileHelper;
 
         #endregion Variables
 
@@ -33,11 +30,8 @@ namespace oinkapp.ViewModels
 
         private void Inicialize()
         {
-            fileHelper = DependencyService.Get<IFileHelper>();
-            savingDatabase = new SavingDatabase(fileHelper.GetLocalFilePath(KeysHelper.SavingDatabaseName));
-
+            savingDatabase = new SavingDatabase();
             GetData();
-
             Title = "Mi alcancía";
             MessagingCenter.Subscribe<SavingItemPageViewModel>(this, "GetData", (sender) => GetData());
         }

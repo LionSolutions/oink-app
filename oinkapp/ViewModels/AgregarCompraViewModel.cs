@@ -1,7 +1,5 @@
 ﻿using oinkapp.Data;
-using oinkapp.Interfaces;
 using oinkapp.Model;
-using System;
 using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
@@ -10,9 +8,8 @@ namespace oinkapp.ViewModels
     {
         #region Variables
 
-        TargetDatabase _TargetDatabase;
-        SavingDatabase _ahorroItemDatabase;
-        public IFileHelper _fileHelper;
+        TargetDatabase targetDatabase;
+        SavingDatabase ahorroItemDatabase;
         INavigation _navigationService;
 
         #endregion Variables
@@ -31,11 +28,8 @@ namespace oinkapp.ViewModels
 
         private void Initialize()
         {
-            //_navigationService = navigationService;
-            _fileHelper = DependencyService.Get<IFileHelper>();
-
-            _TargetDatabase = new TargetDatabase(_fileHelper.GetLocalFilePath("DeseoSQLite.db3"));
-            _ahorroItemDatabase = new SavingDatabase(_fileHelper.GetLocalFilePath("AhorroSQLite.db3"));
+            targetDatabase = new TargetDatabase();
+            ahorroItemDatabase = new SavingDatabase();
 
             Title = "Agregar compra";
         }
@@ -43,7 +37,7 @@ namespace oinkapp.ViewModels
         async void GuardarDeseo()
         {
             //DeseoCreado.FechaRegistro = DateTime.Now;
-            _ = await _TargetDatabase.SaveItemAsync(DeseoCreado);
+            _ = await targetDatabase.SaveItemAsync(DeseoCreado);
 
             await _navigationService.PopModalAsync();
         }

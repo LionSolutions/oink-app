@@ -1,11 +1,7 @@
-﻿using oinkapp.Data;
-using oinkapp.Interfaces;
+﻿using System.Collections.Generic;
+using oinkapp.Data;
 using oinkapp.Model;
 using oinkapp.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using oinkapp.Helpers;
 using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
@@ -16,7 +12,6 @@ namespace oinkapp.ViewModels
 
         public TargetDatabase targetDatabase;
         public SavingDatabase savingDatabase;
-        public IFileHelper fileHelper;
 
         #endregion Variables
 
@@ -34,9 +29,8 @@ namespace oinkapp.ViewModels
 
         private void Inicialize()
         {
-            fileHelper = DependencyService.Get<IFileHelper>();
-            targetDatabase = new TargetDatabase(fileHelper.GetLocalFilePath(KeysHelper.TargetDatabaseName));
-            savingDatabase = new SavingDatabase(fileHelper.GetLocalFilePath(KeysHelper.SavingDatabaseName));
+            targetDatabase = new TargetDatabase();
+            savingDatabase = new SavingDatabase();
 
             Title = "Mis Compras";
         }

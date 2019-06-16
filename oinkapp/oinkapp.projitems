@@ -100,6 +100,7 @@
       <DependentUpon>TargetsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\KeysHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DummyDataHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />

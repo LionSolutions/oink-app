@@ -1,8 +1,6 @@
-﻿using oinkapp.Data;
-using oinkapp.Helpers;
-using oinkapp.Interfaces;
+﻿using System;
+using oinkapp.Data;
 using oinkapp.Model;
-using System;
 using Xamarin.Forms;
 
 namespace oinkapp.ViewModels
@@ -12,7 +10,6 @@ namespace oinkapp.ViewModels
         #region Variables
 
         private SavingDatabase savingDatabase;
-        private IFileHelper fileHelper;
 
         #endregion Variables
 
@@ -88,8 +85,7 @@ namespace oinkapp.ViewModels
 
         private async void Initialize(int _Id)
         {
-            fileHelper = DependencyService.Get<IFileHelper>();
-            savingDatabase = new SavingDatabase(fileHelper.GetLocalFilePath(KeysHelper.SavingDatabaseName));
+            savingDatabase = new SavingDatabase();
 
             Saving = await savingDatabase.GetItemAsync(_Id);
 
