@@ -108,12 +108,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)icon_app.png" />
-    <None Include="$(MSBuildThisFileDirectory)icon_main.png" />
-    <None Include="$(MSBuildThisFileDirectory)compras.png" />
-    <None Include="$(MSBuildThisFileDirectory)monedas.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BurgerMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
