@@ -9,6 +9,7 @@ namespace oinkapp
     {
         public App()
         {
+            InitializeComponent();
             MainPage = new BurgerMenuPage();
         }
     }

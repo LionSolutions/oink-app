@@ -2,51 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="oinkapp.Views.SavingsPage"
-             xmlns:converters="clr-namespace:oinkapp.Converters"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              Title="{Binding Title}"
              Padding="10,0"
              BackgroundColor="#6874E8">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:FriendlyDateConverter x:Key="DateTimeFriendly" />
-            <DataTemplate x:Key="templateAhorro">
-                <ViewCell>
-                    <yummy:PancakeView CornerRadius="10"
-                                       HasShadow="False"
-                                       Padding="20"
-                                       Margin="5"
-                                       BackgroundColor="White">
-                        <StackLayout>
-                            <Grid>
-                                <Label Grid.Column="0"
-                                       HorizontalOptions="StartAndExpand"
-                                       HorizontalTextAlignment="Start"
-                                       Text="{Binding Description}"
-                                       FontSize="Small"
-                                       TextColor="#C4CBCA" />
-                                <Label Grid.Column="1"
-                                       HorizontalOptions="EndAndExpand"
-                                       HorizontalTextAlignment="End"
-                                       Text="{Binding DateRegister,Converter={StaticResource DateTimeFriendly}}"
-                                       FontSize="Small"
-                                       TextColor="#C4CBCA" />
-                            </Grid >
-                            <Label FontSize="Large"
-                                   TextColor="#CC3363">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="$" />
-                                        <Span Text="{Binding Quantity}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-                    </yummy:PancakeView>
-                </ViewCell>
-            </DataTemplate>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Agregar"
                      Command="{Binding OpenNewAhorroCommand}">
