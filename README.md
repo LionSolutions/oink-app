@@ -1,15 +1,28 @@
-# oink-app
+# Oink App
 
 Oink App is an application created for work with differentes development mobile topics.
 
-Result of this application is the next design
+## Topics used
+* StaticResource
+* DataBinding
+* DataTemplate
+* Styles
+* SQLite
+* IValueConverter
 
-## iOS
+## Controls used
+* Shell
+* PancakeView
+* CollectionView
 
-![Screenshoot](/iPhone_11.png)
+## Libraries
+* [Xamarin.Forms.PancakeView](https://github.com/sthewissen/Xamarin.Forms.PancakeView)
+
+## Dashboard Screenshot of Oink App in iOS
+
+![iOS Screenshoot](/iPhone_11.png)
 
 
-## Android
+## Dashboard Screenshot of Oink App in Android
 
-
-![Screenshoot](/Android.png)
+![Android Screenshoot](/Android.png)
