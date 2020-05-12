@@ -1,6 +1,6 @@
 # oink-app
 
-Oink App is an application created for work with differentes develpment mobile topics.
+Oink App is an application created for work with differentes development mobile topics.
 
 Result of this application is the next design
 
