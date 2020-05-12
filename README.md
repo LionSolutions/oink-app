@@ -4,4 +4,4 @@ Oink App is an application created for work with differentes develpment mobile t
 
 Result of this application is the next design
 
-![Screenshoot](iPhone 11.png)
+![Screenshoot](/iPhone_11.png)
